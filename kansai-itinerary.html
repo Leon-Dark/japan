@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关西 7 日行程板 | 淀屋桥 / 北滨基地</title>
+  <style>
+    :root{
+      --bg:#f5efe4;
+      --paper:#fbf7f0;
+      --ink:#1d1a17;
+      --muted:#6f665d;
+      --line:rgba(30,22,16,.12);
+      --shadow:0 24px 60px rgba(39,24,14,.12);
+      --hero-1:#d64b2a;
+      --hero-2:#f2be5c;
+      --hero-3:#244c44;
+      --osaka:#cb5d39;
+      --kyoto:#476d5c;
+      --nara:#8b643f;
+      --arima:#7f3f34;
+      --ok:#2c6a52;
+      --warn:#b56f1b;
+      --risk:#a03832;
+      --card-radius:26px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:"Avenir Next","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(214,75,42,.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(36,76,68,.18), transparent 28%),
+        linear-gradient(180deg, #f7f0e5 0%, #f4ecde 48%, #efe7dc 100%);
+      min-height:100vh;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(29,26,23,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,26,23,.03) 1px, transparent 1px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.35), transparent 70%);
+    }
+
+    a{color:inherit}
+
+    .page{
+      width:min(1280px, calc(100vw - 32px));
+      margin:24px auto 48px;
+      position:relative;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:36px;
+      padding:34px;
+      color:#fff8ef;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.14), transparent 30%),
+        linear-gradient(135deg, var(--hero-3) 0%, #173936 22%, #6a2d22 58%, var(--hero-1) 100%);
+      box-shadow:var(--shadow);
+      isolation:isolate;
+    }
+
+    .hero::after{
+      content:"Kansai";
+      position:absolute;
+      right:-18px;
+      top:-12px;
+      font-family:"Iowan Old Style","Palatino Linotype","Songti SC","STSong",serif;
+      font-size:clamp(88px, 16vw, 196px);
+      letter-spacing:.05em;
+      color:rgba(255,248,239,.08);
+      z-index:-1;
+      line-height:1;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,248,239,.12);
+      border:1px solid rgba(255,248,239,.18);
+      font-size:13px;
+      letter-spacing:.04em;
+      backdrop-filter:blur(8px);
+    }
+
+    h1{
+      margin:18px 0 10px;
+      max-width:12ch;
+      font-family:"Iowan Old Style","Baskerville","Songti SC","STSong",serif;
+      font-weight:700;
+      line-height:.98;
+      font-size:clamp(44px, 7vw, 84px);
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:0;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(255,248,239,.86);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      margin-top:26px;
+    }
+
+    .hero-panel,
+    .alert,
+    .day-card{
+      background:rgba(251,247,240,.78);
+      color:var(--ink);
+      border:1px solid rgba(255,248,239,.22);
+      backdrop-filter:blur(10px);
+      border-radius:26px;
+      box-shadow:0 18px 44px rgba(20,14,10,.08);
+    }
+
+    .hero-panel{
+      padding:22px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.28));
+      border:1px solid rgba(29,26,23,.08);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:28px;
+      line-height:1;
+      margin-bottom:8px;
+      font-family:"Iowan Old Style","Baskerville","Songti SC",serif;
+    }
+
+    .stat span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .alert{
+      padding:22px;
+      background:
+        linear-gradient(180deg, rgba(255,245,230,.92), rgba(255,238,218,.86));
+      border-color:rgba(181,111,27,.18);
+    }
+
+    .alert h2,
+    .section-head h2{
+      margin:0;
+      font-size:18px;
+      line-height:1.25;
+    }
+
+    .alert p,
+    .section-head p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:16px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+      letter-spacing:.02em;
+      border:1px solid transparent;
+      background:rgba(29,26,23,.06);
+    }
+
+    .chip.osaka{background:rgba(203,93,57,.12); color:var(--osaka); border-color:rgba(203,93,57,.18)}
+    .chip.kyoto{background:rgba(71,109,92,.12); color:var(--kyoto); border-color:rgba(71,109,92,.18)}
+    .chip.nara{background:rgba(139,100,63,.12); color:var(--nara); border-color:rgba(139,100,63,.18)}
+    .chip.arima{background:rgba(127,63,52,.12); color:var(--arima); border-color:rgba(127,63,52,.18)}
+    .chip.ok{background:rgba(44,106,82,.11); color:var(--ok); border-color:rgba(44,106,82,.18)}
+    .chip.warn{background:rgba(181,111,27,.12); color:var(--warn); border-color:rgba(181,111,27,.18)}
+    .chip.risk{background:rgba(160,56,50,.10); color:var(--risk); border-color:rgba(160,56,50,.18)}
+
+    .control-bar{
+      position:sticky;
+      top:12px;
+      z-index:20;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:22px 0 18px;
+      padding:12px;
+      border-radius:22px;
+      background:rgba(251,247,240,.88);
+      border:1px solid var(--line);
+      box-shadow:0 18px 34px rgba(27,20,14,.08);
+      backdrop-filter:blur(12px);
+    }
+
+    .control-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    button{
+      appearance:none;
+      border:1px solid rgba(29,26,23,.12);
+      background:#fffdf8;
+      color:var(--ink);
+      border-radius:999px;
+      padding:11px 14px;
+      font:600 13px/1 "Avenir Next","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",sans-serif;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+      border-color:rgba(29,26,23,.24);
+    }
+
+    button.active{
+      background:var(--ink);
+      color:#fff7ec;
+      border-color:var(--ink);
+    }
+
+    .layout{
+      display:block;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:end;
+      margin-bottom:14px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      max-width:58ch;
+    }
+
+    .timeline{
+      display:grid;
+      gap:14px;
+    }
+
+    .day-card{
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.48));
+    }
+
+    .day-card[hidden]{
+      display:none;
+    }
+
+    .day-top{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:16px;
+      padding:22px 24px 18px;
+      align-items:start;
+    }
+
+    .badge{
+      width:68px;
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      border-radius:22px;
+      color:#fff7ee;
+      font-size:13px;
+      line-height:1.15;
+      text-align:center;
+      font-weight:700;
+      padding:8px;
+    }
+
+    .badge.osaka{background:linear-gradient(135deg, #b74d32, #d16f49)}
+    .badge.kyoto{background:linear-gradient(135deg, #365648, #557666)}
+    .badge.nara{background:linear-gradient(135deg, #735538, #9a764c)}
+    .badge.arima{background:linear-gradient(135deg, #6b342d, #975749)}
+
+    .day-title h3{
+      margin:0;
+      font-size:28px;
+      font-family:"Iowan Old Style","Baskerville","Songti SC",serif;
+      line-height:1.1;
+    }
+
+    .day-title p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .day-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+      align-content:flex-start;
+    }
+
+    .day-body{
+      padding:0 24px 24px;
+      display:grid;
+      gap:14px;
+    }
+
+    .slots{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .slot{
+      padding:16px;
+      border-radius:20px;
+      background:rgba(252,249,243,.92);
+      border:1px solid rgba(29,26,23,.08);
+      min-height:220px;
+    }
+
+    .slot strong{
+      display:block;
+      font-size:14px;
+      letter-spacing:.03em;
+      margin-bottom:8px;
+    }
+
+    .slot small{
+      display:block;
+      color:var(--muted);
+      line-height:1.55;
+      margin-bottom:12px;
+    }
+
+    ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    li{
+      margin:0 0 10px;
+      line-height:1.66;
+    }
+
+    .note-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .note{
+      padding:16px 18px;
+      border-radius:20px;
+      border:1px solid rgba(29,26,23,.08);
+      background:rgba(255,252,247,.88);
+    }
+
+    .note strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+    }
+
+    .note p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .pill-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 12px;
+      border-radius:999px;
+      text-decoration:none;
+      background:#fffdf8;
+      border:1px solid rgba(29,26,23,.08);
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.2;
+    }
+
+    .pill-link:hover{
+      border-color:rgba(29,26,23,.2);
+    }
+
+    .spot-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .spot-card{
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid rgba(29,26,23,.08);
+      background:rgba(255,252,247,.94);
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .spot-image{
+      aspect-ratio:4 / 3;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(214,75,42,.14), rgba(36,76,68,.18));
+    }
+
+    .spot-image img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .spot-copy{
+      padding:16px 18px 18px;
+      display:grid;
+      gap:0;
+    }
+
+    .spot-type{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      line-height:1.2;
+      letter-spacing:.03em;
+      color:var(--muted);
+      background:rgba(29,26,23,.05);
+      border:1px solid rgba(29,26,23,.08);
+    }
+
+    .spot-card h4{
+      margin:10px 0 8px;
+      font-size:18px;
+      line-height:1.3;
+    }
+
+    .spot-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.72;
+      font-size:14px;
+    }
+
+    .spot-card p + p{
+      margin-top:10px;
+    }
+
+    .footer-note{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:rgba(255,251,244,.68);
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .compact .slots,
+    .compact .note-row,
+    .compact .spot-grid{
+      display:none;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-panel{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .slots,
+      .note-row,
+      .spot-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .page{
+        width:min(100vw - 18px, 100%);
+        margin:10px auto 28px;
+      }
+
+      .hero{
+        padding:22px;
+        border-radius:28px;
+      }
+
+      .hero h1{
+        max-width:none;
+        font-size:44px;
+      }
+
+      .hero-panel,
+      .alert,
+      .day-top,
+      .day-body{
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .hero-panel{
+        grid-template-columns:1fr;
+      }
+
+      .day-top{
+        grid-template-columns:1fr;
+      }
+
+      .day-meta{
+        justify-content:flex-start;
+      }
+
+      .badge{
+        width:74px;
+      }
+
+      .control-bar{
+        top:8px;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+      }
+
+      body::before,
+      .control-bar{
+        display:none;
+      }
+
+      .page{
+        width:100%;
+        margin:0;
+      }
+
+      .hero,
+      .hero-panel,
+      .alert,
+      .day-card{
+        box-shadow:none;
+        backdrop-filter:none;
+      }
+
+      .layout{
+        display:block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">Kansai / Osaka Base / 2026.03.25-2026.03.31</div>
+      <h1>关西 7 日行程板</h1>
+      <p>住在淀屋桥 / 北滨，用御堂筋线和京阪做主骨架。白天优先给京都、奈良和有马这种更像“第一次到日本”的地方，晚上再回大阪收在老街、酒吧和 LGBT 夜生活里。</p>
+      <div class="hero-grid">
+        <section class="hero-panel" aria-label="旅程概览">
+          <div class="stat">
+            <strong>7 天</strong>
+            <span>2 天大阪、3 天游京都、1 天奈良、1 天有马，最后一晚飞回东京过夜</span>
+          </div>
+          <div class="stat">
+            <strong>1 基地</strong>
+            <span>北滨 / 淀屋桥不动，减少频繁搬运行李和重新熟悉路线</span>
+          </div>
+          <div class="stat">
+            <strong>高密度</strong>
+            <span>把慢走和咖啡替换成更有日本感的寺社、老街、酒区和夜间场景</span>
+          </div>
+          <div class="stat">
+            <strong>夜生活</strong>
+            <span>保留堂山、法善寺横丁、里难波和京都夜间街区作为晚上选项</span>
+          </div>
+        </section>
+        <section class="alert" aria-label="关键提醒">
+          <h2>这页怎么读</h2>
+          <p>每一天都按同样顺序排好：先看这天的主线和节奏，再看上午到晚上的执行安排，最后看地点卡。地点卡会直接告诉你这地方是什么、为什么值得去、第一次到时最该注意什么。</p>
+          <div class="chips">
+            <span class="chip ok">03/25 KIX 入关西</span>
+            <span class="chip warn">京都更重</span>
+            <span class="chip risk">大阪更夜</span>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <div class="control-bar">
+      <div class="control-group" aria-label="筛选">
+        <button class="active" data-filter="all">全部</button>
+        <button data-filter="osaka">大阪</button>
+        <button data-filter="kyoto">京都</button>
+        <button data-filter="nara">奈良</button>
+        <button data-filter="arima">有马</button>
+      </div>
+      <div class="control-group" aria-label="显示">
+        <button id="compactBtn">紧凑查看</button>
+        <button id="expandBtn">全部展开</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <main>
+        <div class="section-head">
+          <div>
+            <h2>每日行程</h2>
+            <p>原则很简单：京都更重，大阪更夜。白天把时间给寺社、老街和温泉，晚上再收在大阪的街区和酒吧里，整趟旅程会更像一次完整的日本初访。</p>
+          </div>
+        </div>
+
+        <section class="timeline" id="timeline">
+          <article class="day-card" data-region="osaka">
+            <div class="day-top">
+              <div class="badge osaka">DAY 1<br>大阪</div>
+              <div class="day-title">
+                <h3>03/25 周三｜到达日：KIX 入城 + 难波老街暖身</h3>
+                <p>你是早上 08:25 才到关西，所以第一天不做超长奔袭。主线就是顺利入城、安顿好行李，然后把大阪南区最有记忆点的街区先看一遍。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip osaka">基地：北滨 / 淀屋桥</span>
+                <span class="chip warn">上午先处理交通和寄存</span>
+                <span class="chip ok">晚上可进法善寺横丁</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>07:00 HND → 08:25 KIX | 09:30-11:30 入城寄存</small>
+                  <ul>
+                    <li>KIX 到难波坐南海大约 34 到 43 分钟，想省脑就先把自己送到难波，再转回北滨 / 淀屋桥。</li>
+                    <li>先把酒店、北滨站 6 号口、淀屋桥站、难波、梅田和伊丹机场位置收藏好，后面不会乱。</li>
+                    <li>第一优先级还是入城和放行李，但下午就可以开始看大阪最有代表性的街区，不用把整天都耗在适应上。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>建议 13:30 后进难波 | 先近后远</small>
+                  <ul>
+                    <li>先去难波一带看道顿堀和法善寺横丁，这比第一天逛商场更能立刻进入日本城市氛围。</li>
+                    <li>如果还有余量，再顺着心斋桥筋慢慢往北走，途中补买快干袜和透明伞。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>19:00-21:30 最合适 | 不做跨城夜奔</small>
+                  <ul>
+                    <li>如果精神还行，去里难波找一间规则清楚的小店吃晚饭；如果累了，就直接回酒店周边收工。</li>
+                    <li>第一晚不建议直接上 club，但可以开始熟悉大阪夜间街区的尺度和气味。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>第一天只要做到顺利入城、安顿好行李、看完难波和法善寺横丁，就已经很完整。重点是进入状态，不是把体力一次用光。</p>
+                </div>
+                <div class="note">
+                  <strong>票单提醒</strong>
+                  <p>这一天前面还有一段羽田到关西的国内段，所以你真正开始玩的时候通常已经接近中午。别把自己当成一早就在大阪的人来安排。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Namba%20Osaka%202018.jpg?width=900" alt="大阪难波街景" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">大阪南区交通核</span>
+                    <h4>难波</h4>
+                    <p>难波是大阪南区最核心的交通和街区节点之一，地铁、近铁、南海、步行商圈都堆在这里。对第一次来的人来说，它很像“大阪城市气氛的总入口”：一下车就能同时看见霓虹、餐饮、拱廊和川流不息的人群。</p>
+                    <p>第一次到难波，不用急着做任务式打卡。重点是把南区的空间关系看明白：道顿堀在什么方向、法善寺横丁藏在哪里、心斋桥筋怎么一路往北延展。只要这一段走顺，后面几天你会轻松很多。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Namba+Station+Osaka" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hozenji%20Yokocho%202023-11.jpg?width=900" alt="大阪法善寺横丁夜景" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">石板老巷</span>
+                    <h4>法善寺横丁</h4>
+                    <p>法善寺横丁是藏在道顿堀喧闹主街背后的短巷，真正吸引人的不是“景点规模”，而是那种很老派的大阪夜气。石板路、低照度灯笼、小店门头和法善寺一带的苔痕，会让这里像从热闹主路突然拐进另一层城市。</p>
+                    <p>第一次来这里，最适合傍晚到夜里。白天它只是窄巷，入夜后才会把“老大阪”的味道显出来。你不一定要在这里吃正餐，但很值得慢慢走一遍，记住这座城市并不只有大广告牌和购物街。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hozenji+Yokocho+Osaka" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shinsaibashi%20Osaka%20Japan01-r.jpg?width=900" alt="大阪心斋桥筋拱廊商店街" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">拱廊商店街</span>
+                    <h4>心斋桥筋</h4>
+                    <p>心斋桥筋是日本很典型的有顶商店街，也就是上面有顶棚、整条街连续铺开的步行商业通道。它的意义不只在购物，而是在于让你看到日本城市里“商店街文化”怎样把餐饮、药妆、潮流店和游客流量压在一条长廊里运转。</p>
+                    <p>第一次到这里，可以把它当成一条方向感练习路线。顺着难波一路往北走，你会慢慢理解大阪南区为什么这么适合晚上活动，也会顺便知道以后要买补给、吃东西或躲雨时该往哪里钻。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Shinsaibashi-suji+Shopping+Street+Osaka" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="kyoto">
+            <div class="day-top">
+              <div class="badge kyoto">DAY 2<br>京都</div>
+              <div class="day-title">
+                <h3>03/26 周四｜京都静线：银阁寺 - 哲学之道 - 永观堂 - 南禅寺</h3>
+                <p>这天走京都北东侧的安静线。它不是最喧闹的游客动线，但更能让你第一次真正看懂京都的寺院、山边、运河和街道节奏。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip kyoto">银阁寺线</span>
+                <span class="chip warn">步行量中高</span>
+                <span class="chip ok">晚上回大阪</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>建议 08:00-08:20 离开酒店 | 京阪到出町柳后短接驳</small>
+                  <ul>
+                    <li>北滨 / 淀屋桥坐京阪北上到出町柳大约 50 分钟级别，最后一小段再用巴士或短程出租补到银阁寺线起点。</li>
+                    <li>早点进京都北东侧，先把银阁寺和哲学之道的人少时段拿下，这条线比清水寺周边更安静也更耐看。</li>
+                    <li>今天不追网红商业街，重点是寺社、树影和路径本身。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>13:00-16:30 走永观堂到南禅寺</small>
+                  <ul>
+                    <li>下午接永观堂和南禅寺，这一段的完成度很高，不用再额外找咖啡店或无意义商店街填空。</li>
+                    <li>如果脚力还可以，再顺手看一下蹴上附近；如果累了，南禅寺收尾就够。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>18:30 后回大阪 | 堂山 / 法善寺横丁 二选一</small>
+                  <ul>
+                    <li>如果你想把“京都更重、大阪更夜”执行到底，今天晚上就不要再加别的白天内容，直接回大阪喝一杯或吃顿像样的晚饭。</li>
+                    <li>想社交去堂山；想轻一点就回法善寺横丁和里难波。今天不需要两种夜晚都拿。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>这条线比大阪白天更适合你，因为它更像“在日本”，而不是“在一个大城市里打卡”。</p>
+                </div>
+                <div class="note">
+                  <strong>风险控制</strong>
+                  <p>如果中午已经累了，就把永观堂和南禅寺看作终点，晚上不要再 bar hop，只选一个地方收尾。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Ginkakuji_Kyoto03-r.jpg/800px-Ginkakuji_Kyoto03-r.jpg" alt="京都银阁寺" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">东山文化代表寺院</span>
+                    <h4>银阁寺</h4>
+                    <p>银阁寺正式名称是慈照寺，常被拿来和金阁寺并提，但它真正迷人的地方恰恰不是“银色”或华丽，而是非常克制的东山审美。庭园、白砂和建筑比例都在强调清、静、留白，这种感觉很京都。</p>
+                    <p>第一次来银阁寺，别只盯着主建筑拍照。更值得看的是庭园视线怎样被一步步引导，山脚寺院为什么能做出“像画卷一样展开”的感觉。它会让你很快分辨出京都的美并不只靠热闹。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ginkaku-ji+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tetsugakunomichi_in_spring.jpg/800px-Tetsugakunomichi_in_spring.jpg" alt="京都哲学之道" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">运河散步路</span>
+                    <h4>哲学之道</h4>
+                    <p>哲学之道不是一个“到此一游式景点”，它本身就是路线。小运河、树影、低矮围墙和住宅区边界连在一起，形成一种非常安静的京都日常感。它也因为哲学家西田几多郎曾在此散步思考而得名。</p>
+                    <p>第一次走这里，最值得感受的是京都如何把寺院、街巷和自然缝合在一起。你不是在从 A 点走到 B 点，而是在体验京都最耐看的那一面：不喧闹，却很有节奏。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Philosopher%27s+Path+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Eikandodo.jpg/800px-Eikandodo.jpg" alt="京都永观堂" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">山麓寺院</span>
+                    <h4>永观堂</h4>
+                    <p>永观堂正式名称是禅林寺，最有名的是秋季红叶，但它平时也很值得去，因为整座寺院顺着山坡展开，回廊、庭园和高低差会让人有一种“越走越深”的感觉。它比很多热门寺院更安静，也更耐看。</p>
+                    <p>第一次到这里，可以留意京都寺院和自然地势的关系。建筑并不是平铺在地上，而是借着山势一点点抬高视线，所以你会觉得这里不是一个单独景点，而是一小块被保护下来的山边世界。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Eikando+Temple+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Nanzenji_Sanmon_1.jpg/800px-Nanzenji_Sanmon_1.jpg" alt="京都南禅寺山门" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">临济宗大寺</span>
+                    <h4>南禅寺</h4>
+                    <p>南禅寺是京都地位很高的禅寺之一，气质比银阁寺、永观堂更开阔。大山门、宽广寺域和著名水路阁把宗教建筑、山林和近代土木结构叠在一起，看起来既古老又有一点意外的现代感。</p>
+                    <p>第一次来南禅寺，最好不要只把它当成“最后一个点”。它像一段总结：前面一路的山边寺院在这里突然展开，空间变大、呼吸感变强，很适合把整条京都静线收在这里。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nanzen-ji+Temple+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="kyoto">
+            <div class="day-top">
+              <div class="badge kyoto">DAY 3<br>京都</div>
+              <div class="day-title">
+                <h3>03/27 周五｜京都 2：东山高密度线</h3>
+                <p>锚点就是清水寺周边到祇园外圈这一条线。做到这一条，今天已经完整；不要贪心再接岚山或别的远线。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip kyoto">京阪主线</span>
+                <span class="chip warn">步行强度中高</span>
+                <span class="chip ok">早点出发收益大</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>建议 07:30 左右出发 | 京阪直取祇园四条 / 清水五条</small>
+                  <ul>
+                    <li>这一天不用绕路，北滨 / 淀屋桥直接上京阪去京都东侧，重点是 09:00 前后进入第一段坂道。</li>
+                    <li>核心策略是早到，优先走坂道段，让最拥挤的区域在相对空的时候解决掉。</li>
+                    <li>建议路径：清水寺周边 → 二年坂三年坂 → 八坂神社外圈。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>13:00 后转祇园外围 + 花见小路 + 先斗町</small>
+                  <ul>
+                    <li>下午不要再做普通休息线，直接把祇园外围、花见小路和先斗町这一段串起来。</li>
+                    <li>这部分更像“京都夜色预备段”，比单纯找店坐下更有味道。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>18:00 后看脚力决定留京都还是回大阪</small>
+                  <ul>
+                    <li>如果你想把京都味道拉满，可以留在祇园或先斗町吃晚饭，看完夜色再回大阪。</li>
+                    <li>如果脚已经很累，就早点坐京阪回去，不硬追第二层成就。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>京都东山今天不需要任何“平庸补位”。这一整块本身就够满，正确做法是把它走顺，而不是加远线。</p>
+                </div>
+                <div class="note">
+                  <strong>失败保护</strong>
+                  <p>如果中午就已经累了，下午只保留祇园和先斗町即可。这样节奏依旧完整，也不会把脚力透支。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kiyomizu-dera,%20Kyoto,%20November%202016%20-01.jpg?width=900" alt="京都清水寺" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">京都代表寺院</span>
+                    <h4>清水寺</h4>
+                    <p>清水寺是很多人第一次想到京都时脑中会跳出来的地方。它建在东山斜坡上，最有名的是木造舞台和向外展开的视野，所以这里的重点不是某一栋楼，而是“站在山边看京都”这种体验。</p>
+                    <p>第一次来清水寺，最好早点到。人少时你会更容易感受到它为什么重要：寺院、山势、远景和脚下的木结构一起工作，京都那种“在盆地里展开”的地貌感会一下子变得很具体。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kiyomizu-dera+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pedestrian%20road%20with%20pavements%20and%20paper%20umbrellas,%20Higashiyama-ku,%20Kyoto,%20Japan,%20early%20morning.jpg?width=900" alt="京都二年坂三年坂石板路" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">保存街区</span>
+                    <h4>二年坂 / 三年坂</h4>
+                    <p>二年坂和三年坂是连接清水寺与东山街区的老坡道，也是很多人心里“京都街景”的原型：石板路、木格窗、低矮屋檐、纸伞和缓坡都压缩在这两段不长的路上。它们本质上是保存下来的旧街区，而不只是通往寺院的路。</p>
+                    <p>第一次来这里，你会立刻理解为什么大家总说要错峰。它们的美几乎和人流量成反比。清晨的坡道是“京都”，白天的坡道更像“京都旅游现场”，所以早去特别值得。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ninenzaka+Kyoto" target="_blank" rel="noreferrer">二年坂</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sannenzaka+Kyoto" target="_blank" rel="noreferrer">三年坂</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/150124%20Gion%20Kyoto%20Japan01s3.jpg?width=900" alt="京都祇园花见小路" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">神社与花街入口</span>
+                    <h4>八坂神社 / 祇园</h4>
+                    <p>八坂神社是东山与祇园之间很重要的门槛，往东是寺社和坡道，往西就是花街和更生活化的街区。祇园本身是京都最有名的传统花街区域之一，所以这里看的不只是“建筑”，也是一种还在延续的城市文化。</p>
+                    <p>第一次走到这一带，重点可以从看景点切换成看街区。屋檐、灯色、巷口、穿和服的人、茶屋外观，都会让你感到京都开始从明信片变成真实可走的城市。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Yasaka+Shrine+Kyoto" target="_blank" rel="noreferrer">八坂神社</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hanamikoji+Street+Kyoto" target="_blank" rel="noreferrer">花见小路</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pontocho%20Alley%20at%20night,%20Kyoto%20%2852409569493%29.jpg?width=900" alt="京都先斗町夜景" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">鸭川侧夜巷</span>
+                    <h4>先斗町</h4>
+                    <p>先斗町是夹在鸭川和木屋町之间的一条狭长小巷，规模不大，但非常有京都夜巷的气质。两边餐饮店密密排开，巷子窄、灯光低，和白天开阔的寺社线完全是另一种感受。</p>
+                    <p>第一次来先斗町，最适合把它当作收尾，而不是中午路过。它真正好看的时候是傍晚到夜里，尤其在你白天已经看完清水寺和祇园之后，会更容易体会京都为什么连夜色都和大阪不一样。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pontocho+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="kyoto">
+            <div class="day-top">
+              <div class="badge kyoto">DAY 4<br>京都</div>
+              <div class="day-title">
+                <h3>03/28 周六｜京都 3：伏见稻荷 + 伏见酒藏区 + 夜生活</h3>
+                <p>这天把京都最有辨识度的神社景观和伏见酒文化接在一起。上午看鸟居和山路，下午看酒造、旧街区和幕末气息，晚上再回大阪决定要不要进夜场。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip kyoto">伏见稻荷 / 伏见酒区</span>
+                <span class="chip ok">适合独行</span>
+                <span class="chip warn">周末人会更多</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>建议 07:00-07:30 出发 | 看清是否停 Fushimi-Inari</small>
+                  <ul>
+                    <li>今天仍然是京阪最省脑，但不要默认特急会停伏见稻荷，出发前先看停靠站。</li>
+                    <li>到达越早越值钱。只走到你觉得体验最好、腿也还轻松的位置就回头，不追求登顶。</li>
+                    <li>今天不是体能证明日，而是照片和氛围收益日。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>11:30-16:00 切伏见酒藏区</small>
+                  <ul>
+                    <li>下午直接去伏见酒造区，把酒造、旧街区和历史感放进同一天里，这比普通慢走更有日本味。</li>
+                    <li>重点不是喝很多，而是把清酒博物馆、酒藏外观和旧街区一起看完整。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>回大阪后 20:00 前后进夜场最稳</small>
+                  <ul>
+                    <li>如果你想要更明确的 queer 夜晚，这天最适合安排 do with cafe 或堂山，因为白天已经拿到了很足的京都内容。</li>
+                    <li>`EAGLE` 更适合先开场，`GRAND SLAM` 更适合聊天，`do with cafe` 适合看 show，`EXPLOSION` 才是偏 club 的那种夜晚。</li>
+                    <li>如果鞋湿了，到酒店后还是立刻处理，不要让第二天奈良背锅。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>交通提醒</strong>
+                  <p>今天用京阪最省脑，但要注意不是所有列车都停伏见稻荷。上车前先看停靠站，不要默认特急全停。</p>
+                </div>
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>今天不是留白日，而是“神社 + 酒文化 + 夜生活”组合日。密度已经够了，不要再额外加岚山或宇治。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Kyoto_Fushimi_Inari_Taisha_2.jpg/800px-Kyoto_Fushimi_Inari_Taisha_2.jpg" alt="京都伏见稻荷千本鸟居" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">稻荷神社总本宫</span>
+                    <h4>伏见稻荷</h4>
+                    <p>伏见稻荷大社是日本最有辨识度的神社之一，也是全国稻荷神社的总本宫。它最有名的不是某一座殿，而是山路上一道接一道的朱红色鸟居。对第一次来日本的人来说，这里几乎是“神社世界观”的直观入口。</p>
+                    <p>第一次来伏见稻荷，不必执着登顶。更重要的是在前半段人还不算太多的时候，感受鸟居带来的包裹感和不断转弯上升的节奏。这个地方的魅力在于沉浸，而不是打卡完成率。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fushimi+Inari+Taisha+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gekkeikan%20Okura%20Sake%20Museum02s4592.jpg?width=900" alt="京都伏见月桂冠大仓纪念馆" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">伏见酒造入口</span>
+                    <h4>月桂冠大仓纪念馆</h4>
+                    <p>伏见之所以值得单独去，不只是因为离稻荷近，而是因为这里本身就是京都最重要的酒造区之一。月桂冠大仓纪念馆能让你看到清酒不是“买一瓶伴手礼”那么简单，而是一整套依赖水、仓、器具和地方产业形成的文化。</p>
+                    <p>第一次到这里，可以把重点放在“清酒是怎么成为地方身份”的问题上。你会看到伏见为什么和酒紧紧绑在一起，也会更明白下午这段为什么比普通逛街更有日本特色。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Gekkeikan+Okura+Sake+Museum+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Terada-ya,%20gaikan.jpg?width=900" alt="京都伏见寺田屋" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">幕末史地点</span>
+                    <h4>寺田屋</h4>
+                    <p>寺田屋原本是伏见的一家旅馆，因为幕末时期的事件而变得有名。即使你对日本近代史不熟，这里也能让伏见从“酒造街区”再多出一层政治和时代更替的味道，街区会一下子立体很多。</p>
+                    <p>第一次走到寺田屋，不一定要背历史知识点。你只要知道这里不是孤零零的旧建筑，而是伏见从水运、商贸到幕末动荡都曾经过的一块现场，整片区域就会更有故事感。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Teradaya+Inn+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Doyamacho-Osaka-2018-Luka-Peternel.jpg?width=900" alt="大阪堂山街景" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">大阪同志夜生活区</span>
+                    <h4>堂山夜场</h4>
+                    <p>堂山在大阪的角色，有点像一个更集中也更容易按心情切换玩法的夜生活片区。它不是单一酒吧，而是一整片可以从安静喝一杯、聊天、看 show，到更晚一点进 club 的区域。对第一次来的人来说，这里比临时乱找店更省心。</p>
+                    <p>第一次到堂山，建议给自己一个很低的目标，例如“只进去一间、喝一杯、看一下氛围”。这样最容易玩得舒服。你不需要把所有店都拿下，只要选一种今晚想要的状态就够了。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=EAGLE+OSAKA+12-8+Doyamacho+Kita-ku+Osaka" target="_blank" rel="noreferrer">EAGLE</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=do+with+cafe+9-23+Ugano-cho+Kita-ku+Osaka" target="_blank" rel="noreferrer">do with cafe</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=EXPLOSION+8-23+Doyamacho+Kita-ku+Osaka" target="_blank" rel="noreferrer">EXPLOSION</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="nara">
+            <div class="day-top">
+              <div class="badge nara">DAY 5<br>奈良</div>
+              <div class="day-title">
+                <h3>03/29 周日｜奈良日归：东大寺 + 春日大社 + 奈良町</h3>
+                <p>奈良这天走一条很完整的主线：大佛、林地、神社、町家街区都在同一片区域里。它不会像京都那样密，但层次反而很清楚。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip nara">东大寺 / 春日大社</span>
+                <span class="chip ok">户外舒适</span>
+                <span class="chip warn">鹿会靠近食物</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>建议 08:00 左右出发 | 御堂筋线到难波后接近铁奈良</small>
+                  <ul>
+                    <li>这天默认走大阪难波 → 近铁奈良。到站后 5 分钟进奈良公园、约 20 分钟到东大寺，步行尺度很清楚。</li>
+                    <li>先去东大寺，再沿奈良公园往春日大社方向推进，路线清楚且内容够满。</li>
+                    <li>今天不要在车站附近耗时间，一下车就把大点位开始推进。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>13:00 后从春日大社切奈良町</small>
+                  <ul>
+                    <li>下午收在奈良町最合适，町屋街区和小店比单纯回大阪更有旅行收束感。</li>
+                    <li>如果腿已经很累，奈良町只走核心一小段即可，不要贪多。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>19:00 后回大阪 | 一晚只选一个点</small>
+                  <ul>
+                    <li>如果白天走得还行，晚上去法善寺横丁或里难波吃饭很合适；想继续 queer 场景，再去堂山。</li>
+                    <li>明天虽然是温泉日，但也不建议把今晚玩成硬撑局。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>奈良今天的正确加法是春日大社，不是随便找别的点填空。这样整条线完整，也不会乱。</p>
+                </div>
+                <div class="note">
+                  <strong>安全提醒</strong>
+                  <p>鹿会盯食物和手里的纸，不要拿着零食边走边拍，避免不必要的狼狈场面。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Todaiji_Daibutsuden_2008.jpg/800px-Todaiji_Daibutsuden_2008.jpg" alt="奈良东大寺大佛殿" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">奈良时代巨寺</span>
+                    <h4>东大寺</h4>
+                    <p>东大寺不是一般意义上的“古寺”，它更像古代国家级工程的遗存。大佛殿的尺度非常夸张，走近时会明显感觉到奈良曾经是日本古都时那种强烈的政治和宗教中心感，这种压迫力和京都的精致是完全不同的。</p>
+                    <p>第一次到东大寺，建议把注意力放在“规模”上。门、殿、屋顶和大佛都在告诉你这不是一个小而美的地方，而是古代日本怎样用建筑去表达权威和信仰的结果。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Todai-ji+Temple+Nara" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kasuga-taisha2.jpg/800px-Kasuga-taisha2.jpg" alt="奈良春日大社" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">春日山脚神社</span>
+                    <h4>春日大社</h4>
+                    <p>春日大社是奈良非常有代表性的神社，和东大寺那种“巨大、庄重”的佛寺感不同，它更偏向神道世界的林地、石灯笼和朱红社殿。走到这里，奈良会从“大佛和鹿”变成一整片有森林气息的古都区域。</p>
+                    <p>第一次来春日大社，可以留意它的参道和灯笼。这里的魅力不是一眼看尽，而是慢慢穿过树林和灯影时，会感到神社和自然本来就在一起，这很日本，也很奈良。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kasuga+Taisha+Nara" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Street%20in%20Naramachi%20area%20(6156072416).jpg?width=900" alt="奈良町老街" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">町家街区</span>
+                    <h4>奈良町</h4>
+                    <p>奈良町是旧商人街区，保留了不少町家、窄巷和低矮屋檐。它没有京都东山那么“戏剧性”，但正因为更松弛、更生活化，第一次走起来反而很舒服，像在古都背后看见仍然有人日常生活的一层。</p>
+                    <p>第一次来奈良町，不用想着把每条巷子都走完。它适合在看完东大寺和春日大社之后慢下来，看看店门、木窗、转角和街巷尺度，作为奈良这天的收尾非常合适。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Naramachi+Nara" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="arima">
+            <div class="day-top">
+              <div class="badge arima">DAY 6<br>有马</div>
+              <div class="day-title">
+                <h3>03/30 周一｜温泉日：有马温泉</h3>
+                <p>这天仍然是恢复日，但不是无聊恢复。你可以把它理解成“老温泉街 + 泡汤 + 早一点收尾”，而不是纯粹发呆。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip arima">温泉街</span>
+                <span class="chip warn">下雨更适合</span>
+                <span class="chip ok">步行强度低</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>建议 09:00 左右出发 | 梅田高速巴士最省脑</small>
+                  <ul>
+                    <li>从大阪出发去有马，梅田坐巴士大约 55 到 60 分钟最直接；铁路更绕，不值得今天折腾。</li>
+                    <li>如果是一泊二食，把大件行李留在大阪酒店寄存，带一个小包就够。</li>
+                    <li>今天不要为了“顺路”加别的点，路线越简单越好。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>泡汤 + 温泉街小走</small>
+                  <ul>
+                    <li>如果日归，泡完就回大阪；如果一泊二食，就按旅馆晚餐时间回房休息。</li>
+                    <li>恢复优先，但温泉街本身值得慢慢走一下，老店、坡道和街景比“回酒店睡觉”更有回忆点。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>日归回大阪，或旅馆会席晚餐</small>
+                  <ul>
+                    <li>如果住一晚，注意旅馆晚餐和早餐通常有固定时段，不要太晚到。</li>
+                    <li>今天结束后，整个行程会明显轻松很多。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>路线建议</strong>
+                  <p>默认优先选最省脑的进出方式，不要执着铁路一定更“正统”。温泉日的评价标准只有一个：不折腾。</p>
+                </div>
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>今天不是刷景点日，但也不是彻底空白。泡汤和温泉街已经足够成为完整内容，不需要再额外加一个大城市。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arima%20Onsen%20Kobe01s5s4272.jpg?width=900" alt="神户有马温泉街" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">日本古老温泉地</span>
+                    <h4>有马温泉</h4>
+                    <p>有马温泉是日本很有名的老温泉地之一，真正吸引人的不是“景点数量”，而是山里温泉町的整体气氛。和大阪、京都、奈良比起来，这里会明显慢下来，空气、坡道和街区密度都像在提醒你旅程已经进入休息段。</p>
+                    <p>第一次到有马，别想着安排满。它最好的打开方式反而是接受节奏变慢这件事，让温泉、小街和山城感自己发挥作用。放在旅程后段，效果尤其好。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Arima+Onsen+Station" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arima%20Onsen%20Yumotozaka01s3200.jpg?width=900" alt="有马温泉汤本坂街道" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">温泉街主坡道</span>
+                    <h4>温泉街坡道</h4>
+                    <p>有马温泉街最迷人的部分往往不是某一个点，而是顺着坡一路往上或往下走时那种老温泉地的尺度。街道窄、坡度明显、店铺贴得近，偶尔还能闻到温泉和食物的味道，这种混合感很难在大城市里找到。</p>
+                    <p>第一次走这里，重点不是“打卡完成”，而是让自己慢一点。看看公共浴场、土产店、转角小神社和坡道上的视线变化，你会更容易明白为什么温泉地本身就是目的地。</p>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arima%20Onsen%20Gosho-bessho02s5s4272.jpg?width=900" alt="有马温泉旅馆景观" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">泡汤方式</span>
+                    <h4>日归汤 / 旅馆晚餐</h4>
+                    <p>对第一次去日本温泉的人来说，日归汤和旅馆一泊二食其实是两种完全不同的体验。日归更像给旅程按一下暂停键，泡完就走；旅馆则是把“泡汤、回房、会席晚餐、第二天早餐”做成一个完整节奏。</p>
+                    <p>第一次去，如果你更在意轻松和省脑，日归已经足够好；如果你特别想体验日本旅馆的仪式感，再考虑住一晚。无论选哪种，重点都不是证明自己会安排，而是真正泡得舒服。</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="osaka">
+            <div class="day-top">
+              <div class="badge osaka">DAY 7<br>回东京</div>
+              <div class="day-title">
+                <h3>03/31 周二｜关西收尾日：大阪最后补景 → ITM → 羽田</h3>
+                <p>最后一天白天还能补一块大阪街区，但下午必须果断切机场模式。晚上不是直接回国，而是先从伊丹飞羽田，进入东京过夜段。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip osaka">天神桥筋 / 黑门市场 / 梅田三选一</span>
+                <span class="chip warn">可能阵雨</span>
+                <span class="chip risk">晚上飞羽田后仍要过夜</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>最后补景：天神桥筋商店街 / 黑门市场 / 梅田</small>
+                  <ul>
+                    <li>如果你想要更生活化，就去天神桥筋商店街；想更游客感一点，就去黑门市场；只想效率最高，就留在梅田。</li>
+                    <li>今天不建议再开一个远郊支线，因为晚上还有飞羽田这件事。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>建议 16:30-17:00 离开市区 | 梅田 / 难波去 ITM 约 30 分钟级别</small>
+                  <ul>
+                    <li>伊丹去大阪站或难波的机场巴士都大约 30 分钟级别，但官方也写了道路可能延误，所以今天不要卡极限。</li>
+                    <li>今天不是国际离境，但也不要卡极限。宁愿早一点到伊丹，也不要把最后半天做成冲刺赛。</li>
+                    <li>如果下雨，出发前把备用袜放在最顺手的位置。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>ITM → HND，处理东京过夜</small>
+                  <ul>
+                    <li>到羽田后不是旅程结束，而是东京过夜段开始。提前想好是住机场周边还是直接在羽田内解决。</li>
+                    <li>如果有托运行李，提前和 JAL 确认能否直挂到第二天国际段，别把这个问题留到现场猜。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>关键风险</strong>
+                  <p>今天真正的风险，是飞到羽田后才发现过夜和行李衔接没想清楚。这件事最好在出发前就定好。</p>
+                </div>
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>最后一天仍然可以补一块大阪，但收手必须果断。你不是回国，是先飞回东京，所以要留足中转脑力。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tenjinbashisuji%20shopping%20street%20-%20panoramio%20%2844%29.jpg?width=900" alt="大阪天神桥筋商店街" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">生活系商店街</span>
+                    <h4>天神桥筋商店街</h4>
+                    <p>天神桥筋商店街很适合第一次来大阪但不想只看游客热门点的人。它是很典型的长距离日本商店街，卖吃的、卖杂货的、理发店、老店和日常生活混在一起，比道顿堀更接近“本地人平常怎么在城市里穿行”。</p>
+                    <p>第一次到这里，最值得看的是大阪的生活感。你会发现它没有那么强的观光表演性，但正因为如此，很适合放在最后半天，让旅程从热闹景点回到真正的城市日常里。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Tenjinbashisuji+Shopping+Street+Osaka" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/KUROMON%20MARKET%20OSAKA%20%2854676620980%29.jpg?width=900" alt="大阪黑门市场" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">食材市场</span>
+                    <h4>黑门市场</h4>
+                    <p>黑门市场原本就是大阪的传统市场，如今游客很多，但它仍然是快速感受大阪“吃”的一面的好地方。摊位密、节奏快、海鲜和熟食集中，很适合在离开关西前做一次短而直接的食欲收尾。</p>
+                    <p>第一次来黑门，不必把它想成深度市场体验。它更适合高效吃一点、看一点、买一点，然后收手离开。放在最后一天，它的优点反而很明显：省脑、直接、有大阪味。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kuromon+Market+Osaka" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Osaka%20Station%20City2.JPG?width=900" alt="大阪梅田站城" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">大阪北区交通核</span>
+                    <h4>梅田</h4>
+                    <p>梅田是大阪北区的超级交通和商业中心，站体、商场、地下街和高楼几乎连成一大片。它不一定是最有风情的地方，但对第一次来的人非常实用，尤其适合下雨、买伴手礼或在离机场前维持高效率。</p>
+                    <p>第一次到梅田，很容易被复杂站体搞晕，所以你也可以把这里当成“现代大阪”的样本。它和京都、奈良、有马完全不同，能让这趟旅程最后收在一幅更现代的关西城市图景上。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Osaka+Umeda+Station" target="_blank" rel="noreferrer">地图</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-image">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Itami%20Airport%20terminal.jpg?width=900" alt="大阪伊丹机场航站楼" loading="lazy">
+                  </div>
+                  <div class="spot-copy">
+                    <span class="spot-type">国内线衔接段</span>
+                    <h4>伊丹机场 / 羽田过夜</h4>
+                    <p>这张机票的最后一段不是“关西直接回家”，而是先从伊丹飞羽田，再在东京过夜，第二天早上继续国际段。所以伊丹机场和羽田机场更像旅程的最后两个功能节点：一个负责稳定离开关西，一个负责把过夜和第二天出发衔接好。</p>
+                    <p>第一次遇到这种安排，重点不是把最后一天塞满，而是把脑力留给中转。只要你知道晚上到羽田后自己要去哪里睡、行李怎么处理，这张票就会很顺；反过来，多逛一个点也补不回现场慌乱。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Itami+Airport" target="_blank" rel="noreferrer">伊丹</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Haneda+Airport" target="_blank" rel="noreferrer">羽田</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+
+    </div>
+
+    <section class="footer-note">
+      按天往下看就够了。先看这天的主线，再看路线和出发窗口，最后读地点卡决定哪些地方你想停久一点、哪些地方只想走一遍看气氛。
+    </section>
+  </div>
+
+  <script>
+    const body = document.body;
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const cards = document.querySelectorAll(".day-card");
+    const compactBtn = document.getElementById("compactBtn");
+    const expandBtn = document.getElementById("expandBtn");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+
+        cards.forEach((card) => {
+          const match = filter === "all" || card.dataset.region === filter;
+          card.hidden = !match;
+        });
+      });
+    });
+
+    compactBtn.addEventListener("click", () => {
+      body.classList.toggle("compact");
+      compactBtn.classList.toggle("active", body.classList.contains("compact"));
+    });
+
+    expandBtn.addEventListener("click", () => {
+      body.classList.remove("compact");
+      compactBtn.classList.remove("active");
+      cards.forEach((card) => {
+        card.hidden = false;
+      });
+      filterButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.filter === "all");
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
