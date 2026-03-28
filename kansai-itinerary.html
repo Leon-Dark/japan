@@ -17,7 +17,7 @@
       --hero-3:#244c44;
       --osaka:#cb5d39;
       --kyoto:#476d5c;
-      --nara:#8b643f;
+      --kobe:#5c6f8b;
       --arima:#7f3f34;
       --ok:#2c6a52;
       --warn:#b56f1b;
@@ -207,7 +207,7 @@
 
     .chip.osaka{background:rgba(203,93,57,.12); color:var(--osaka); border-color:rgba(203,93,57,.18)}
     .chip.kyoto{background:rgba(71,109,92,.12); color:var(--kyoto); border-color:rgba(71,109,92,.18)}
-    .chip.nara{background:rgba(139,100,63,.12); color:var(--nara); border-color:rgba(139,100,63,.18)}
+    .chip.kobe{background:rgba(92,111,139,.12); color:var(--kobe); border-color:rgba(92,111,139,.18)}
     .chip.arima{background:rgba(127,63,52,.12); color:var(--arima); border-color:rgba(127,63,52,.18)}
     .chip.ok{background:rgba(44,106,82,.11); color:var(--ok); border-color:rgba(44,106,82,.18)}
     .chip.warn{background:rgba(181,111,27,.12); color:var(--warn); border-color:rgba(181,111,27,.18)}
@@ -316,7 +316,7 @@
 
     .badge.osaka{background:linear-gradient(135deg, #b74d32, #d16f49)}
     .badge.kyoto{background:linear-gradient(135deg, #365648, #557666)}
-    .badge.nara{background:linear-gradient(135deg, #735538, #9a764c)}
+    .badge.kobe{background:linear-gradient(135deg, #44556f, #7086a6)}
     .badge.arima{background:linear-gradient(135deg, #6b342d, #975749)}
 
     .day-title h3{
@@ -447,24 +447,11 @@
       background:rgba(255,252,247,.94);
       display:flex;
       flex-direction:column;
-      min-height:100%;
-    }
-
-    .spot-image{
-      aspect-ratio:4 / 3;
-      overflow:hidden;
-      background:linear-gradient(135deg, rgba(214,75,42,.14), rgba(36,76,68,.18));
-    }
-
-    .spot-image img{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
+      min-height:auto;
     }
 
     .spot-copy{
-      padding:16px 18px 18px;
+      padding:18px;
       display:grid;
       gap:0;
     }
@@ -611,12 +598,12 @@
     <header class="hero">
       <div class="eyebrow">Kansai / Osaka Base / 2026.03.25-2026.03.31</div>
       <h1>关西 7 日行程板</h1>
-      <p>全程住在大阪的淀屋桥 / 北滨，不换酒店。白天主要去京都、奈良和有马，晚上再回大阪吃饭、散步或玩夜生活；大阪白天内容主要集中在到达日和最后半天。</p>
+      <p>全程住在大阪的淀屋桥 / 北滨，不换酒店。03/25 和 03/26 已经完成难波、中之岛、银阁寺线和三条附近；从 03/27 起，主线改成先把大阪南区和日本桥补完整，03/30 回到更值的一整天京都樱花线，03/31 再把最后半天留给大人向逛店。</p>
       <div class="hero-grid">
         <section class="hero-panel" aria-label="旅程概览">
           <div class="stat">
             <strong>7 天</strong>
-            <span>2 天大阪、3 天游京都、1 天奈良、1 天有马，最后一晚飞回东京过夜</span>
+            <span>3 天游大阪、3 天游京都、1 天神户，最后一晚飞回东京过夜</span>
           </div>
           <div class="stat">
             <strong>1 基地</strong>
@@ -624,20 +611,20 @@
           </div>
           <div class="stat">
             <strong>白天主线</strong>
-            <span>白天优先京都、奈良、有马；大阪主要留给到达日、最后半天和夜晚</span>
+            <span>前半已完成京都北东侧；后半优先大阪补漏、神户、伏见、03/30 京都樱花线，以及 03/31 的梅田 / 日本桥大人向逛店半天</span>
           </div>
           <div class="stat">
-            <strong>夜生活</strong>
-            <span>大阪夜晚主要分两类：堂山（梅田侧）或法善寺横丁 + 里难波（难波侧）</span>
+            <strong>03/31 最后半天</strong>
+            <span>想看公开合法的大人向卖场，就留给梅田第一大楼或日本桥；逛完直接切伊丹机场模式最顺</span>
           </div>
         </section>
         <section class="alert" aria-label="关键提醒">
           <h2>这页怎么读</h2>
           <p>每一天都按同样顺序排好：先看这天主要在哪座城市，再看上午到晚上的安排，最后看地点卡。只想快速知道“今天怎么走”，读时间段三栏就够；想知道“这个地方值不值得去”，再看下面的地点卡。</p>
           <div class="chips">
-            <span class="chip ok">03/25 KIX 入关西</span>
-            <span class="chip warn">白天优先京都 / 奈良 / 有马</span>
-            <span class="chip risk">晚上回大阪吃饭或夜生活</span>
+            <span class="chip ok">03/25-03/26 已完成</span>
+            <span class="chip warn">03/27-03/29 降密度</span>
+            <span class="chip risk">03/31 逛店收尾</span>
           </div>
         </section>
       </div>
@@ -648,8 +635,7 @@
         <button class="active" data-filter="all">全部</button>
         <button data-filter="osaka">大阪</button>
         <button data-filter="kyoto">京都</button>
-        <button data-filter="nara">奈良</button>
-        <button data-filter="arima">有马</button>
+        <button data-filter="kobe">神户</button>
       </div>
       <div class="control-group" aria-label="显示">
         <button id="compactBtn">紧凑查看</button>
@@ -662,17 +648,17 @@
         <div class="section-head">
           <div>
             <h2>每日行程</h2>
-            <p>整趟路线可以直接理解成：住宿固定在大阪，白天去京都、奈良、有马，晚上回大阪。大阪白天只放最合适的两段：到达日先熟悉难波，最后一天再补半天市区。</p>
+            <p>现在的读法更简单：03/25 和 03/26 当作已完成记录，后半程按日期看就行：03/28 改成神户轻松线，03/29 再走伏见，03/30 留给京都东山樱花线，03/31 用半天收一个更好玩的大阪结尾。</p>
           </div>
         </div>
         <div class="note-row">
           <div class="note">
             <strong>先记住地理</strong>
-            <p>北滨 / 淀屋桥是住宿基地。难波在大阪南侧，适合道顿堀、法善寺横丁、里难波这类散步加吃饭路线；梅田在大阪北侧，堂山就在这边，更适合酒吧和夜生活。</p>
+            <p>北滨 / 淀屋桥是住宿基地。难波和日本桥都在大阪南侧，适合法善寺横丁、里难波、电电城这类散步加钻店路线；梅田在大阪北侧，堂山就在这边，更适合酒吧和夜生活。</p>
           </div>
           <div class="note">
             <strong>最快读法</strong>
-            <p>每天先看标题，确认今天主要在哪一片；再看上午、下午、晚上三栏决定实际执行；最后才用地点卡判断哪些地方想停久一点、哪些地方只想看气氛。</p>
+            <p>如果你只想看后半程，直接从 03/27 往下读就够了。03/25 和 03/26 现在主要是留作记录，帮助你判断哪些地方已经拿到、哪些地方还没真正逛到。</p>
           </div>
         </div>
 
@@ -681,13 +667,13 @@
             <div class="day-top">
               <div class="badge osaka">DAY 1<br>大阪</div>
               <div class="day-title">
-                <h3>03/25 周三｜到达日：KIX 入城 + 难波老街暖身</h3>
-                <p>你是早上 08:25 才到关西，所以第一天不做超长奔袭。主线就是顺利入城、安顿好行李，然后把大阪南区最有记忆点的街区先看一遍。</p>
+                <h3>03/25 周三｜已完成：KIX 入城 + 难波南区 + 中之岛</h3>
+                <p>这一天实际已经完成。主线是顺利入城、安顿好行李、先熟悉难波和法善寺横丁，后来又补了中之岛；但因为心斋桥走到难波已经是 21:00 后，里难波还不算真正逛到。</p>
               </div>
               <div class="day-meta">
                 <span class="chip osaka">基地：北滨 / 淀屋桥</span>
                 <span class="chip warn">上午先处理交通和寄存</span>
-                <span class="chip ok">晚上可进法善寺横丁</span>
+                <span class="chip ok">实际补了中之岛</span>
               </div>
             </div>
             <div class="day-body">
@@ -721,7 +707,7 @@
               <div class="note-row">
                 <div class="note">
                   <strong>执行重点</strong>
-                  <p>第一天只要做到顺利入城、安顿好行李、看完难波和法善寺横丁，再在里难波吃一顿不费脑的晚饭，就已经很完整。重点是进入状态，不是把体力一次用光。</p>
+                  <p>第一天已经拿到了入城、难波、法善寺横丁和中之岛，所以它现在主要是完成记录。真正还没认真逛到的，是里难波和堂山，而不是大阪南区本身。</p>
                 </div>
                 <div class="note">
                   <strong>票单提醒</strong>
@@ -730,9 +716,6 @@
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Namba_Osaka_2018.jpg/900px-Namba_Osaka_2018.jpg" alt="大阪难波街景" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">大阪南区交通核</span>
                     <h4>难波</h4>
@@ -744,9 +727,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Hozenji_Yokocho_2023-11.jpg/900px-Hozenji_Yokocho_2023-11.jpg" alt="大阪法善寺横丁夜景" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">石板老巷</span>
                     <h4>法善寺横丁</h4>
@@ -758,9 +738,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shinsaibashi_Osaka_Japan01-r.jpg/900px-Shinsaibashi_Osaka_Japan01-r.jpg" alt="大阪心斋桥筋拱廊商店街" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">拱廊商店街</span>
                     <h4>心斋桥筋</h4>
@@ -779,13 +756,13 @@
             <div class="day-top">
               <div class="badge kyoto">DAY 2<br>京都</div>
               <div class="day-title">
-                <h3>03/26 周四｜京都安静寺院线：银阁寺 - 哲学之道 - 永观堂 - 南禅寺</h3>
-                <p>这天主要走京都东山北侧，从银阁寺一路往南到南禅寺。重点不是热门商业街，而是寺院、山边、运河和步行路线本身。</p>
+                <h3>03/26 周四｜已完成：银阁寺线 + 三条附近</h3>
+                <p>这天实际已经完成银阁寺 - 哲学之道 - 永观堂 - 南禅寺这条京都北东侧主线，之后还补逛了三条附近。也就是说，京都北东侧和一点市中心夜逛都已经拿到，不需要再专门回补。</p>
               </div>
               <div class="day-meta">
                 <span class="chip kyoto">银阁寺线</span>
                 <span class="chip warn">步行量中高</span>
-                <span class="chip ok">晚上回大阪</span>
+                <span class="chip ok">实际补了三条附近</span>
               </div>
             </div>
             <div class="day-body">
@@ -821,18 +798,15 @@
               <div class="note-row">
                 <div class="note">
                   <strong>执行重点</strong>
-                  <p>这条线很适合放在第一次去京都，因为寺院、山边和运河会比大阪商圈更有“京都初访”的感觉。今天的重点就是把这条线走完整，不需要另外加购物内容。</p>
+                  <p>这条京都安静线已经完成，而且完成度很高。所以后半程再安排京都时，不要回头补这条线，而是把时间留给更吃花况的东山樱花线。</p>
                 </div>
                 <div class="note">
                   <strong>风险控制</strong>
-                  <p>如果中午已经累了，就把永观堂和南禅寺当成今天的终点。晚上回大阪后也不要再两片夜区都去，只选堂山，或者只选法善寺横丁 + 里难波。</p>
+                  <p>03/26 已经把脚力用了不少，所以从 03/27 起最不划算的做法，就是再临时加一个同等强度的京都白天线。后半程要优先减量，而不是继续叠加。</p>
                 </div>
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Ginkakuji_Kyoto03-r.jpg/800px-Ginkakuji_Kyoto03-r.jpg" alt="京都银阁寺" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">东山文化代表寺院</span>
                     <h4>银阁寺</h4>
@@ -844,9 +818,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tetsugakunomichi_in_spring.jpg/800px-Tetsugakunomichi_in_spring.jpg" alt="京都哲学之道" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">运河散步路</span>
                     <h4>哲学之道</h4>
@@ -858,9 +829,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Eikandodo.jpg/800px-Eikandodo.jpg" alt="京都永观堂" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">山麓寺院</span>
                     <h4>永观堂</h4>
@@ -872,9 +840,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Nanzenji_Sanmon_1.jpg/800px-Nanzenji_Sanmon_1.jpg" alt="京都南禅寺山门" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">临济宗大寺</span>
                     <h4>南禅寺</h4>
@@ -889,113 +854,182 @@
             </div>
           </article>
 
-          <article class="day-card" data-region="kyoto">
+          <article class="day-card" data-region="osaka">
             <div class="day-top">
-              <div class="badge kyoto">DAY 3<br>京都</div>
+              <div class="badge osaka">DAY 3<br>大阪</div>
               <div class="day-title">
-                <h3>03/27 周五｜京都东山主线：清水寺 - 二年坂三年坂 - 祇园 - 先斗町</h3>
-                <p>这一天基本都在京都东山热门区活动，从清水寺周边一路走到祇园和先斗町。只要把这一整条线走顺，今天就已经很完整，不需要再加岚山或别的远线。</p>
+                <h3>03/27 周五｜大阪恢复半天：法善寺横丁 + 里难波 + 日本桥可插入</h3>
+                <p>前两天走路太多，今天中午才真正收拾好，所以不再硬上京都。今天就老老实实把大阪南区补顺：先认真逛法善寺横丁和里难波，如果状态还行，再顺着走去日本桥看一点更有日本味的大人向商店；澡堂和堂山都降成候补。</p>
               </div>
               <div class="day-meta">
-                <span class="chip kyoto">京阪主线</span>
-                <span class="chip warn">步行强度中高</span>
-                <span class="chip ok">早点出发收益大</span>
+                <span class="chip osaka">今天不跨城</span>
+                <span class="chip warn">中午后再出门</span>
+                <span class="chip ok">澡堂 / 堂山都做候补</span>
               </div>
             </div>
             <div class="day-body">
               <div class="slots">
                 <section class="slot">
                   <strong>上午</strong>
-                  <small>建议 07:30 左右出发 | 京阪直取祇园四条 / 清水五条</small>
+                  <small>睡到 11:00 左右 | 12:00 后再慢慢出门</small>
                   <ul>
-                    <li>这一天不用绕路，北滨 / 淀屋桥直接上京阪去京都东侧，重点是 09:00 前后进入第一段坂道。</li>
-                    <li>核心策略是早到，优先走坂道段，让最拥挤的区域在相对空的时候解决掉。</li>
-                    <li>建议路径：清水寺周边 → 二年坂三年坂 → 八坂神社外圈。</li>
+                    <li>今天不用补做任何“本来应该早起”的内容。既然已经睡到中午，就把它当成恢复信号，不要再试图把上午亏回去。</li>
+                    <li>先吃一顿稳的，再决定从难波还是心斋桥进场。今天的评价标准不是效率，而是把脚缓回来。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>下午</strong>
-                  <small>13:00 后转祇园外围 + 花见小路 + 先斗町</small>
+                  <small>建议 14:30-18:30 先难波，再看状态插日本桥</small>
                   <ul>
-                    <li>下午不要再做普通休息线，直接把祇园外围、花见小路和先斗町这一段串起来。</li>
-                    <li>这部分更像“京都夜色预备段”，比单纯找店坐下更有味道。</li>
+                    <li>先去法善寺横丁和周边巷子，把你 03/25 那晚太晚没看到的白天和傍晚状态补上。</li>
+                    <li>之后把里难波当成今天真正的主场，找一两家想吃的小店。重点不是多走，而是把难波背街认真逛到。</li>
+                    <li>如果脚力和兴致都还行，再往日本桥 / 电电城方向顺过去。那边很多店都在室内，比额外跨城更适合恢复日。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>晚上</strong>
-                  <small>18:00 后看脚力决定留京都还是回大阪</small>
+                  <small>19:30 后以晚饭为主 | 澡堂和堂山都只留候补</small>
                   <ul>
-                    <li>如果你想把京都味道拉满，可以留在祇园或先斗町吃晚饭，看完夜色再回大阪。</li>
-                    <li>如果脚已经很累，就早点坐京阪回去，不硬追第二层成就。</li>
+                    <li>默认在里难波吃饭喝一杯，然后早点回酒店。今天这样已经很完整，不需要再给自己额外加任务。</li>
+                    <li>如果你想看一点日本公开合法的大人向卖场，就顺路进日本桥一两家店看看，不用把它排成扫店任务。</li>
+                    <li>如果脚真的很累，再把澡堂当放松候补；如果反而状态意外地还行，堂山也最多只做一间店短停。</li>
                   </ul>
                 </section>
               </div>
               <div class="note-row">
                 <div class="note">
                   <strong>执行重点</strong>
-                  <p>今天的正确做法很简单：只做清水寺、二年坂三年坂、祇园、先斗町这一整条主线。它本身就够一整天，不需要再额外加一个新区。</p>
+                  <p>今天是恢复兼补漏日，不追景点完成率。只要把法善寺横丁和里难波真正逛到，今天就算成功；日本桥只是可插入段，澡堂和堂山都不是主线。</p>
                 </div>
                 <div class="note">
-                  <strong>失败保护</strong>
-                  <p>如果中午就已经累了，下午只保留祇园和先斗町即可。这样节奏依旧完整，也不会把脚力透支。</p>
+                  <strong>候补逻辑</strong>
+                  <p>今天最不划算的事，就是因为觉得“已经中午了”而临时开新主线。澡堂和堂山都可以留作看体力的最后按钮，别让它们抢掉今天真正该补的难波南区。</p>
                 </div>
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/900px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg" alt="京都清水寺" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">京都代表寺院</span>
-                    <h4>清水寺</h4>
-                    <p>清水寺是很多人第一次想到京都时脑中会跳出来的地方。它建在东山斜坡上，最有名的是木造舞台和向外展开的视野，所以这里的重点不是某一栋楼，而是“站在山边看京都”这种体验。</p>
-                    <p>第一次来清水寺，最好早点到。人少时你会更容易感受到它为什么重要：寺院、山势、远景和脚下的木结构一起工作，京都那种“在盆地里展开”的地貌感会一下子变得很具体。</p>
+                    <span class="spot-type">石板老巷</span>
+                    <h4>法善寺横丁</h4>
+                    <p>法善寺横丁最适合拿来做“重新补看”的傍晚段。你 03/25 那晚经过时已经偏晚，很多店和巷子状态都不是最好看；今天早点来，才比较像真正逛到它。</p>
+                    <p>更顺的走法通常不是在里面死磕吃饭，而是把它当作进入难波背街气氛的入口：先走一遍，再把晚饭交给旁边的里难波。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kiyomizu-dera+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hozenji+Yokocho+Osaka" target="_blank" rel="noreferrer">地图</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/900px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg" alt="京都二年坂三年坂石板路" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">保存街区</span>
-                    <h4>二年坂 / 三年坂</h4>
-                    <p>二年坂和三年坂是连接清水寺与东山街区的老坡道，也是很多人心里“京都街景”的原型：石板路、木格窗、低矮屋檐、纸伞和缓坡都压缩在这两段不长的路上。它们本质上是保存下来的旧街区，而不只是通往寺院的路。</p>
-                    <p>第一次来这里，你会立刻理解为什么大家总说要错峰。它们的美几乎和人流量成反比。清晨的坡道是“京都”，白天的坡道更像“京都旅游现场”，所以早去特别值得。</p>
+                    <span class="spot-type">难波背街餐饮区</span>
+                    <h4>里难波</h4>
+                    <p>里难波不是一个单独景点，而是难波背街那片更适合钻小店、喝一杯、吃一顿的区域叫法。你 03/25 已经走过心斋桥到难波的大致线，但还没在这片真正停下来。</p>
+                    <p>今天最适合把里难波当成主任务，而不是附带一逛。少挑几家、认真坐下来，比再多走一大圈更有价值。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ninenzaka+Kyoto" target="_blank" rel="noreferrer">二年坂</a>
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sannenzaka+Kyoto" target="_blank" rel="noreferrer">三年坂</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ura+Namba+Osaka" target="_blank" rel="noreferrer">地图</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/900px-150124_Gion_Kyoto_Japan01s3.jpg" alt="京都祇园花见小路" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">神社与花街入口</span>
-                    <h4>八坂神社 / 祇园</h4>
-                    <p>八坂神社是东山与祇园之间很重要的门槛，往东是寺社和坡道，往西就是花街和更生活化的街区。祇园本身是京都最有名的传统花街区域之一，所以这里看的不只是“建筑”，也是一种还在延续的城市文化。</p>
-                    <p>第一次走到这一带，重点可以从看景点切换成看街区。屋檐、灯色、巷口、穿和服的人、茶屋外观，都会让你感到京都开始从明信片变成真实可走的城市。</p>
+                    <span class="spot-type">宅店与大人向商店混合区</span>
+                    <h4>日本桥 / 电电城</h4>
+                    <p>如果你想把“日本的大人向卖场文化”也看一眼，日本桥会比临时乱找更顺。这里本来就是电玩、模型、同人和公开合法的大人向商店混在一起的一片街区，走起来比较公开，也更像观察城市趣味。</p>
+                    <p>今天把它放成可插入段，而不是硬主线。法善寺横丁和里难波拿到之后，再看脚力决定要不要顺过去；逛一两家就够，不用变成扫店任务。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Yasaka+Shrine+Kyoto" target="_blank" rel="noreferrer">八坂神社</a>
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hanamikoji+Street+Kyoto" target="_blank" rel="noreferrer">花见小路</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nipponbashi+Denden+Town+Osaka" target="_blank" rel="noreferrer">电电城</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nobunaga+Shoten+Nipponbashi+Osaka" target="_blank" rel="noreferrer">信长书店</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+
+          <article class="day-card" data-region="kobe">
+            <div class="day-top">
+              <div class="badge kobe">DAY 4<br>神户</div>
+              <div class="day-title">
+                <h3>03/28 周六｜神户恢复日：旧居留地 + 南京町 + Harborland</h3>
+                <p>这天和 03/29 对调。既然你 03/28 想休息，那就不做京都早起线，改让神户承担一个晚出门也能成立的恢复日：城市紧凑、节奏轻，而且是这三天里最适合租自行车的一天。</p>
+              </div>
+              <div class="day-meta">
+                <span class="chip kobe">旧居留地 / 南京町 / 港边</span>
+                <span class="chip ok">11:00 左右再出门也行</span>
+                <span class="chip warn">今天最适合租车</span>
+              </div>
+            </div>
+            <div class="day-body">
+              <div class="slots">
+                <section class="slot">
+                  <strong>上午</strong>
+                  <small>睡到自然醒也没关系 | 建议 11:00 左右出门到三宫 / 元町</small>
+                  <ul>
+                    <li>今天不用争分夺秒抢第一班车。JR 大阪到三宫大约 20 分钟级别，阪急梅田到神户三宫大约 25 分钟级别，晚一点出门也完全成立。</li>
+                    <li>先在旧居留地和东游园地一带慢慢进入神户状态，这一段平、好走，也最适合恢复日。</li>
+                    <li>如果你今天只想很轻地活动，那上午就只拿这片街区加一顿咖啡，不必硬补更多。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>下午</strong>
+                  <small>13:00 后南京町 / 元町，再接 Harborland</small>
+                  <ul>
+                    <li>下午从元町切进南京町吃点东西，再往港边收。神户这条线的优点是你可以边走边删内容，删到只剩两段也还是完整。</li>
+                    <li>如果你不想多走，今天直接用 Kobelin 共享单车接旧居留地、南京町和 Harborland 会很顺，腿的压力会比纯步行低很多。</li>
+                  </ul>
+                </section>
+                <section class="slot">
+                  <strong>晚上</strong>
+                  <small>港边或三宫吃完就回大阪 | 今天默认不再加夜场</small>
+                  <ul>
+                    <li>如果你想在神户把晚饭一起拿掉，就留在港边或三宫；如果只想省脑，傍晚前后回大阪就好。今天不建议再去堂山，也不建议把难波玩成续摊。</li>
+                    <li>把脚力留给 03/29 和 03/30 会更划算，因为后面两天又要回到京都主线。</li>
+                  </ul>
+                </section>
+              </div>
+              <div class="note-row">
+                <div class="note">
+                  <strong>执行重点</strong>
+                  <p>今天的目标不是刷神户景点完成率，而是用一条最省脚的城市线把身体缓回来：旧居留地的洋气、南京町的人气、港边的开阔感，这三段够了就算成功。</p>
+                </div>
+                <div class="note">
+                  <strong>骑行方案</strong>
+                  <p>03/28-03/30 里，今天最适合租车。默认建议 Kobelin：1 日 1650 日元、用到当日 23:59、可异地还车，最适合你这种晚出门的恢复日；如果你不想用 app，再改选 SPARK 店面租车，1 日 1800 日元起，但要回店还车且通常 17:00 前就得收。</p>
+                </div>
+              </div>
+              <div class="spot-grid">
+                <article class="spot-card">
+                  <div class="spot-copy">
+                    <span class="spot-type">洋风街区</span>
+                    <h4>旧居留地 / 东游园地</h4>
+                    <p>神户最迷人的地方，不是某一个单独景点，而是这座城市把港口、洋风建筑和现代商业揉在一起之后的气质。旧居留地和东游园地这一带平整、好走，很适合你现在这种“想逛，但不想暴走”的状态。</p>
+                    <p>第一次到这里，最值得留意的是街道比例和建筑表情。它会让神户和大阪、京都一下子区分开来，像突然切到另一种更国际、更松弛的关西城市语气。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kobe+Former+Foreign+Settlement" target="_blank" rel="noreferrer">旧居留地</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Higashi+Yuenchi+Park+Kobe" target="_blank" rel="noreferrer">东游园地</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Pontocho_Alley_at_night%2C_Kyoto_%2852409569493%29.jpg/900px-Pontocho_Alley_at_night%2C_Kyoto_%2852409569493%29.jpg" alt="京都先斗町夜景" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">鸭川侧夜巷</span>
-                    <h4>先斗町</h4>
-                    <p>先斗町是夹在鸭川和木屋町之间的一条狭长小巷，规模不大，但非常有京都夜巷的气质。两边餐饮店密密排开，巷子窄、灯光低，和白天开阔的寺社线完全是另一种感受。</p>
-                    <p>第一次来先斗町，最适合把它当作收尾，而不是中午路过。它真正好看的时候是傍晚到夜里，尤其在你白天已经看完清水寺和祇园之后，会更容易体会京都为什么连夜色都和大阪不一样。</p>
+                    <span class="spot-type">中华街与商店街</span>
+                    <h4>南京町 / 元町</h4>
+                    <p>南京町是神户最容易让人立刻开心起来的一段。它比寺社线更直接，也比一般商场更有地方气味，吃的、灯色、人声和周围街区的切换都很快，很适合拿来做周六的主场。</p>
+                    <p>第一次来南京町，不用想着把所有摊都试一遍。更好的做法通常是边逛边选一两样，再顺着元町商店街慢慢走，这样脚和胃都比较不会被周末人流打爆。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pontocho+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nankinmachi+Kobe" target="_blank" rel="noreferrer">南京町</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Motomachi+Shopping+Street+Kobe" target="_blank" rel="noreferrer">元町商店街</a>
+                    </div>
+                  </div>
+                </article>
+                <article class="spot-card">
+                  <div class="spot-copy">
+                    <span class="spot-type">海边收尾段</span>
+                    <h4>Harborland / Meriken Park</h4>
+                    <p>神户最值的一件事，就是把最后一段留给海边。Harborland 和 Meriken Park 这一带比起“必须做什么”，更像一种空间体验：风、海、港口地标和开阔视线会把整天节奏自然放慢。</p>
+                    <p>如果南京町那边已经很挤，这一段尤其重要。它能把周末的人潮感洗掉一点，也让神户这天最后收在一个更轻松、更像港口城市本体的画面里。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kobe+Harborland" target="_blank" rel="noreferrer">Harborland</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Meriken+Park+Kobe" target="_blank" rel="noreferrer">Meriken Park</a>
                     </div>
                   </div>
                 </article>
@@ -1005,61 +1039,57 @@
 
           <article class="day-card" data-region="kyoto">
             <div class="day-top">
-              <div class="badge kyoto">DAY 4<br>京都</div>
+              <div class="badge kyoto">DAY 5<br>京都</div>
               <div class="day-title">
-                <h3>03/28 周六｜京都南侧主线：伏见稻荷 + 伏见酒造区 + 大阪夜场</h3>
-                <p>这天白天都在京都南侧。上午看伏见稻荷的鸟居和山路，下午看伏见酒造区和旧街区，晚上再回大阪决定要不要去堂山或别的夜场。</p>
+                <h3>03/29 周日｜京都南侧主线：伏见稻荷 + 伏见酒造区</h3>
+                <p>伏见线改到周日。好处是你 03/28 可以先休息，坏处是人会更多，所以这天要把“早到”执行得更彻底。上午拿稻荷，下午再切酒造区，晚上回大阪轻收尾。</p>
               </div>
               <div class="day-meta">
                 <span class="chip kyoto">伏见稻荷 / 伏见酒区</span>
-                <span class="chip ok">适合独行</span>
-                <span class="chip warn">周末人会更多</span>
+                <span class="chip ok">自行车只建议下午</span>
+                <span class="chip warn">周日更挤，早到更值</span>
               </div>
             </div>
             <div class="day-body">
               <div class="slots">
                 <section class="slot">
                   <strong>上午</strong>
-                  <small>建议 07:00-07:30 出发 | 看清是否停 Fushimi-Inari</small>
+                  <small>建议 07:00-07:20 出发 | 今天是周日，伏见稻荷越早越值</small>
                   <ul>
                     <li>今天仍然是京阪最省脑，但不要默认特急会停伏见稻荷，出发前先看停靠站。</li>
                     <li>到达越早越值钱。只走到你觉得体验最好、腿也还轻松的位置就回头，不追求登顶。</li>
-                    <li>今天不是体能证明日，而是照片和氛围收益日。</li>
+                    <li>今天不是体能证明日，而是“周日也要把稻荷拿顺”的执行日。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>下午</strong>
-                  <small>11:30-16:00 切伏见酒藏区</small>
+                  <small>11:30-16:00 切伏见酒藏区 | 想骑只在这一段骑</small>
                   <ul>
                     <li>下午直接去伏见酒造区，把酒造、旧街区和历史感放进同一天里，这比普通慢走更有日本味。</li>
-                    <li>重点不是喝很多，而是把清酒博物馆、酒藏外观和旧街区一起看完整。</li>
+                    <li>如果你真的想骑车，最适合骑的是下午这段伏见酒造区，不是上午的稻荷山。上午还是乖乖徒步更顺。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>晚上</strong>
-                  <small>回大阪后 20:00 前后进夜场最稳</small>
+                  <small>回大阪后轻收尾 | 不强求再刷一轮夜场</small>
                   <ul>
-                    <li>如果你想要更明确的 queer 夜晚，这天最适合安排 do with cafe 或堂山，因为白天已经拿到了很足的京都内容。</li>
-                    <li>`EAGLE` 更适合先开场，`GRAND SLAM` 更适合聊天，`do with cafe` 适合看 show，`EXPLOSION` 才是偏 club 的那种夜晚。</li>
-                    <li>如果鞋湿了，到酒店后还是立刻处理，不要让第二天奈良背锅。</li>
+                    <li>伏见这天回大阪后，优先吃一顿稳的，然后早点收工。今天不建议再去堂山，也不建议把难波玩成续摊。</li>
+                    <li>如果鞋湿了，到酒店后还是立刻处理，不要让第二天东山樱花线背锅。</li>
                   </ul>
                 </section>
               </div>
               <div class="note-row">
                 <div class="note">
                   <strong>交通提醒</strong>
-                  <p>今天用京阪最省脑，但要注意不是所有列车都停伏见稻荷。上车前先看停靠站，不要默认特急全停。</p>
+                  <p>今天用京阪最省脑，但要注意不是所有列车都停伏见稻荷。上车前先看停靠站，不要默认特急全停。周日的人流会把“早到”这件事放大很多。</p>
                 </div>
                 <div class="note">
-                  <strong>执行重点</strong>
-                  <p>今天已经包含早起神社、下午伏见老街、晚上大阪夜场三段内容，密度其实很满。不要再额外加岚山或宇治，不然会变成赶场。</p>
+                  <strong>骑行判断</strong>
+                  <p>今天不是最适合整天骑的一天。伏见稻荷官方更推荐公共交通，周边停车也容易紧张；如果真想租，京都市认证的 KCTP 伏见 Cycle Terminal 是按天计费，营业时间 9:00-18:00，标准车 1200 日元 / 天起，更适合下午酒造区短骑。</p>
                 </div>
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Kyoto_Fushimi_Inari_Taisha_2.jpg/800px-Kyoto_Fushimi_Inari_Taisha_2.jpg" alt="京都伏见稻荷千本鸟居" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">稻荷神社总本宫</span>
                     <h4>伏见稻荷</h4>
@@ -1071,9 +1101,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gekkeikan_Okura_Sake_Museum02s4592.jpg/900px-Gekkeikan_Okura_Sake_Museum02s4592.jpg" alt="京都伏见月桂冠大仓纪念馆" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">伏见酒造入口</span>
                     <h4>月桂冠大仓纪念馆</h4>
@@ -1085,9 +1112,6 @@
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Terada-ya%2C_gaikan.jpg/900px-Terada-ya%2C_gaikan.jpg" alt="京都伏见寺田屋" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">幕末史地点</span>
                     <h4>寺田屋</h4>
@@ -1098,210 +1122,106 @@
                     </div>
                   </div>
                 </article>
-                <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Doyamacho-Osaka-2018-Luka-Peternel.jpg/900px-Doyamacho-Osaka-2018-Luka-Peternel.jpg" alt="大阪堂山街景" loading="lazy">
-                  </div>
-                  <div class="spot-copy">
-                    <span class="spot-type">大阪同志夜生活区</span>
-                    <h4>堂山夜场</h4>
-                    <p>堂山在大阪北区、靠近梅田，是更集中也更容易按心情切换玩法的夜生活片区。它不是单一酒吧，而是一整片可以从安静喝一杯、聊天、看 show，到更晚一点进 club 的区域。对第一次来的人来说，这里比临时乱找店更省心。</p>
-                    <p>第一次到堂山，建议给自己一个很低的目标，例如“只进去一间、喝一杯、看一下氛围”。这样最容易玩得舒服。你可以把它理解成“今晚是去梅田侧玩社交夜生活”，而不是一个必须逐店打卡的任务。</p>
-                    <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=EAGLE+OSAKA+12-8+Doyamacho+Kita-ku+Osaka" target="_blank" rel="noreferrer">EAGLE</a>
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=do+with+cafe+9-23+Ugano-cho+Kita-ku+Osaka" target="_blank" rel="noreferrer">do with cafe</a>
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=EXPLOSION+8-23+Doyamacho+Kita-ku+Osaka" target="_blank" rel="noreferrer">EXPLOSION</a>
-                    </div>
-                  </div>
-                </article>
               </div>
             </div>
           </article>
 
-          <article class="day-card" data-region="nara">
+          <article class="day-card" data-region="kyoto">
             <div class="day-top">
-              <div class="badge nara">DAY 5<br>奈良</div>
+              <div class="badge kyoto">DAY 6<br>京都</div>
               <div class="day-title">
-                <h3>03/29 周日｜奈良日归：东大寺 + 春日大社 + 奈良町</h3>
-                <p>奈良这天走一条很完整的主线：大佛、林地、神社、町家街区都在同一片区域里。它不会像京都那样密，但层次反而很清楚。</p>
+                <h3>03/30 周一｜京都樱花主线：清水寺 - 二年坂三年坂 - 祇园 - 先斗町</h3>
+                <p>这一天重新留给京都东山樱花线。按目前公开预测，京都更好的樱花窗口更接近 03/30 之后，所以把最吃花况、也最值得拿整天去走的一整条东山线放在这里更合理。</p>
               </div>
               <div class="day-meta">
-                <span class="chip nara">东大寺 / 春日大社</span>
-                <span class="chip ok">户外舒适</span>
-                <span class="chip warn">鹿会靠近食物</span>
+                <span class="chip kyoto">樱花优先</span>
+                <span class="chip warn">早点出发收益大</span>
+                <span class="chip ok">自行车不建议主打</span>
               </div>
             </div>
             <div class="day-body">
               <div class="slots">
                 <section class="slot">
                   <strong>上午</strong>
-                  <small>建议 08:00 左右出发 | 御堂筋线到难波后接近铁奈良</small>
+                  <small>建议 07:30 左右出发 | 京阪直取清水五条 / 祇园四条</small>
                   <ul>
-                    <li>这天默认走大阪难波 → 近铁奈良。到站后 5 分钟进奈良公园、约 20 分钟到东大寺，步行尺度很清楚。</li>
-                    <li>先去东大寺，再沿奈良公园往春日大社方向推进，路线清楚且内容够满。</li>
-                    <li>今天不要在车站附近耗时间，一下车就把大点位开始推进。</li>
+                    <li>今天不用再分心别的支线，北滨 / 淀屋桥直接上京阪去京都东侧，目标是早点进入清水寺周边和坂道段。</li>
+                    <li>如果樱花状态不错，就把最密集也最好看的部分留给清水寺、二年坂三年坂和八坂神社外圈。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>下午</strong>
-                  <small>13:00 后从春日大社切奈良町</small>
+                  <small>13:00 后转祇园外围 + 花见小路 + 先斗町</small>
                   <ul>
-                    <li>下午收在奈良町最合适，町屋街区和小店比单纯回大阪更有旅行收束感。</li>
-                    <li>如果腿已经很累，奈良町只走核心一小段即可，不要贪多。</li>
+                    <li>下午把祇园外围、花见小路和先斗町串起来，不再另外加岚山或别的远线。</li>
+                    <li>这一天重点就是把东山整条樱花主线走顺，而不是追更多点位数量。</li>
+                    <li>如果你在考虑骑车，这条线更适合把自行车停在外围后再走核心段，不适合一路骑穿清水寺 - 二年坂 - 三年坂。</li>
                   </ul>
                 </section>
                 <section class="slot">
                   <strong>晚上</strong>
-                  <small>19:00 后回大阪 | 一晚只选一个点</small>
+                  <small>看脚力决定留京都吃饭，或早点回大阪</small>
                   <ul>
-                    <li>如果白天走得还行，晚上想轻松收尾就去难波侧的法善寺横丁和里难波；想继续 queer 场景和社交，再去梅田侧的堂山。</li>
-                    <li>明天虽然是温泉日，但也不建议把今晚玩成硬撑局。</li>
+                    <li>如果你走得顺、而且花况不错，可以留在祇园或先斗町吃晚饭，把夜色也一起拿到。</li>
+                    <li>如果走到傍晚脚已经不行，就别硬把先斗町和夜色都拿满。可以在祇园吃完就回大阪，澡堂也只作舒服收尾的候补，不必再开新支线。</li>
                   </ul>
                 </section>
               </div>
               <div class="note-row">
                 <div class="note">
                   <strong>执行重点</strong>
-                  <p>奈良今天的主线就是东大寺 → 春日大社 → 奈良町。照这个顺序走，内容已经完整，不需要临时再加别的景点。</p>
+                  <p>把京都东山主线留到这天，是因为它最看花况，也最值得在更接近樱花窗口的时候去。今天只做这一条线，本身就已经很满。</p>
                 </div>
                 <div class="note">
-                  <strong>安全提醒</strong>
-                  <p>鹿会盯食物和手里的纸，不要拿着零食边走边拍，避免不必要的狼狈场面。</p>
+                  <strong>骑行判断</strong>
+                  <p>今天不建议把自行车当主工具。东山这条线坡道多、行人密、停车也更麻烦；更好的做法是铁路 + 步行。如果傍晚已经累了，就把它收成清水寺 / 祇园主线，不再强求更晚的加码。</p>
                 </div>
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Todaiji_Daibutsuden_2008.jpg/800px-Todaiji_Daibutsuden_2008.jpg" alt="奈良东大寺大佛殿" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">奈良时代巨寺</span>
-                    <h4>东大寺</h4>
-                    <p>东大寺不是一般意义上的“古寺”，它更像古代国家级工程的遗存。大佛殿的尺度非常夸张，走近时会明显感觉到奈良曾经是日本古都时那种强烈的政治和宗教中心感，这种压迫力和京都的精致是完全不同的。</p>
-                    <p>第一次到东大寺，建议把注意力放在“规模”上。门、殿、屋顶和大佛都在告诉你这不是一个小而美的地方，而是古代日本怎样用建筑去表达权威和信仰的结果。</p>
+                    <span class="spot-type">京都代表寺院</span>
+                    <h4>清水寺</h4>
+                    <p>清水寺建在东山斜坡上，最有名的是木造舞台和向外展开的视野，所以这里最值得看的不是某一栋楼，而是“站在山边看京都”这件事本身。</p>
+                    <p>如果 03/30 前后樱花状态起来了，这里会比 03/27 更值得拿来做主场。早点到，人少一点，体验会差很多。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Todai-ji+Temple+Nara" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kiyomizu-dera+Kyoto" target="_blank" rel="noreferrer">地图</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kasuga-taisha2.jpg/800px-Kasuga-taisha2.jpg" alt="奈良春日大社" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">春日山脚神社</span>
-                    <h4>春日大社</h4>
-                    <p>春日大社是奈良非常有代表性的神社，和东大寺那种“巨大、庄重”的佛寺感不同，它更偏向神道世界的林地、石灯笼和朱红社殿。走到这里，奈良会从“大佛和鹿”变成一整片有森林气息的古都区域。</p>
-                    <p>第一次来春日大社，可以留意它的参道和灯笼。这里的魅力不是一眼看尽，而是慢慢穿过树林和灯影时，会感到神社和自然本来就在一起，这很日本，也很奈良。</p>
+                    <span class="spot-type">保存街区</span>
+                    <h4>二年坂 / 三年坂</h4>
+                    <p>二年坂和三年坂本身就是这条东山线里最适合看“京都街景 + 樱花窗口”的部分之一。石板路、木格窗、坡道和人流一起构成了这里最核心的体验。</p>
+                    <p>这两段路本来就吃时段，也吃花况，所以放到 03/30 比放到更早的日子更值得赌一把。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kasuga+Taisha+Nara" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ninenzaka+Kyoto" target="_blank" rel="noreferrer">二年坂</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sannenzaka+Kyoto" target="_blank" rel="noreferrer">三年坂</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Street_in_Naramachi_area_%286156072416%29.jpg/900px-Street_in_Naramachi_area_%286156072416%29.jpg" alt="奈良町老街" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">町家街区</span>
-                    <h4>奈良町</h4>
-                    <p>奈良町是旧商人街区，保留了不少町家、窄巷和低矮屋檐。它没有京都东山那么“戏剧性”，但正因为更松弛、更生活化，第一次走起来反而很舒服，像在古都背后看见仍然有人日常生活的一层。</p>
-                    <p>第一次来奈良町，不用想着把每条巷子都走完。它适合在看完东大寺和春日大社之后慢下来，看看店门、木窗、转角和街巷尺度，作为奈良这天的收尾非常合适。</p>
+                    <span class="spot-type">神社与花街入口</span>
+                    <h4>八坂神社 / 祇园</h4>
+                    <p>八坂神社和祇园是这条线里从“寺社和坡道”转进“京都街区氛围”的一段。白天看街区，傍晚看灯色，很适合拿来做东山线的后半程。</p>
+                    <p>如果前面清水寺和坂道已经走顺，这一段就不需要赶，慢慢收尾反而更有味道。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Naramachi+Nara" target="_blank" rel="noreferrer">地图</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </article>
-
-          <article class="day-card" data-region="arima">
-            <div class="day-top">
-              <div class="badge arima">DAY 6<br>有马</div>
-              <div class="day-title">
-                <h3>03/30 周一｜恢复日：有马温泉 + 温泉街</h3>
-                <p>今天只做三件事：去有马、泡汤、早点收工。它是恢复日，但不是空白日，因为温泉街本身就足够构成一天的内容。</p>
-              </div>
-              <div class="day-meta">
-                <span class="chip arima">温泉街</span>
-                <span class="chip warn">下雨更适合</span>
-                <span class="chip ok">步行强度低</span>
-              </div>
-            </div>
-            <div class="day-body">
-              <div class="slots">
-                <section class="slot">
-                  <strong>上午</strong>
-                  <small>建议 09:00 左右出发 | 梅田高速巴士最省脑</small>
-                  <ul>
-                    <li>从大阪出发去有马，梅田坐巴士大约 55 到 60 分钟最直接；铁路更绕，不值得今天折腾。</li>
-                    <li>如果是一泊二食，把大件行李留在大阪酒店寄存，带一个小包就够。</li>
-                    <li>今天不要为了“顺路”加别的点，路线越简单越好。</li>
-                  </ul>
-                </section>
-                <section class="slot">
-                  <strong>下午</strong>
-                  <small>泡汤 + 温泉街小走</small>
-                  <ul>
-                    <li>如果日归，泡完就回大阪；如果一泊二食，就按旅馆晚餐时间回房休息。</li>
-                    <li>恢复优先，但温泉街本身值得慢慢走一下，老店、坡道和街景比“回酒店睡觉”更有回忆点。</li>
-                  </ul>
-                </section>
-                <section class="slot">
-                  <strong>晚上</strong>
-                  <small>日归回大阪，或旅馆会席晚餐</small>
-                  <ul>
-                    <li>如果住一晚，注意旅馆晚餐和早餐通常有固定时段，不要太晚到。</li>
-                    <li>今天结束后，整个行程会明显轻松很多。</li>
-                  </ul>
-                </section>
-              </div>
-              <div class="note-row">
-                <div class="note">
-                  <strong>路线建议</strong>
-                  <p>今天只看一件事：怎么去最省事。梅田坐巴士通常最直接，不用为了“坐铁路更像旅行”去增加折腾。</p>
-                </div>
-                <div class="note">
-                  <strong>执行重点</strong>
-                  <p>今天的内容就是泡汤和温泉街，不需要再额外塞一个神户市区或别的大城市。越简单，这一天越成功。</p>
-                </div>
-              </div>
-              <div class="spot-grid">
-                <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Arima_Onsen_Kobe01s5s4272.jpg/900px-Arima_Onsen_Kobe01s5s4272.jpg" alt="神户有马温泉街" loading="lazy">
-                  </div>
-                  <div class="spot-copy">
-                    <span class="spot-type">日本古老温泉地</span>
-                    <h4>有马温泉</h4>
-                    <p>有马温泉是日本很有名的老温泉地之一，真正吸引人的不是“景点数量”，而是山里温泉町的整体气氛。和大阪、京都、奈良比起来，这里会明显慢下来，空气、坡道和街区密度都像在提醒你旅程已经进入休息段。</p>
-                    <p>第一次到有马，别想着安排满。它最好的打开方式反而是接受节奏变慢这件事，让温泉、小街和山城感自己发挥作用。放在旅程后段，效果尤其好。</p>
-                    <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Arima+Onsen+Station" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Yasaka+Shrine+Kyoto" target="_blank" rel="noreferrer">八坂神社</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hanamikoji+Street+Kyoto" target="_blank" rel="noreferrer">花见小路</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Arima_Onsen_Yumotozaka01s3200.jpg/900px-Arima_Onsen_Yumotozaka01s3200.jpg" alt="有马温泉汤本坂街道" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">温泉街主坡道</span>
-                    <h4>温泉街坡道</h4>
-                    <p>有马温泉街最迷人的部分往往不是某一个点，而是顺着坡一路往上或往下走时那种老温泉地的尺度。街道窄、坡度明显、店铺贴得近，偶尔还能闻到温泉和食物的味道，这种混合感很难在大城市里找到。</p>
-                    <p>第一次走这里，重点不是“打卡完成”，而是让自己慢一点。看看公共浴场、土产店、转角小神社和坡道上的视线变化，你会更容易明白为什么温泉地本身就是目的地。</p>
-                  </div>
-                </article>
-                <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Arima_Onsen_Gosho-bessho02s5s4272.jpg/900px-Arima_Onsen_Gosho-bessho02s5s4272.jpg" alt="有马温泉旅馆景观" loading="lazy">
-                  </div>
-                  <div class="spot-copy">
-                    <span class="spot-type">泡汤方式</span>
-                    <h4>日归汤 / 旅馆晚餐</h4>
-                    <p>对第一次去日本温泉的人来说，日归汤和旅馆一泊二食其实是两种完全不同的体验。日归更像给旅程按一下暂停键，泡完就走；旅馆则是把“泡汤、回房、会席晚餐、第二天早餐”做成一个完整节奏。</p>
-                    <p>第一次去，如果你更在意轻松和省脑，日归已经足够好；如果你特别想体验日本旅馆的仪式感，再考虑住一晚。无论选哪种，重点都不是证明自己会安排，而是真正泡得舒服。</p>
+                    <span class="spot-type">鸭川侧夜巷</span>
+                    <h4>先斗町</h4>
+                    <p>先斗町最适合放在今天最后一段。如果你白天已经把清水寺和祇园走完，这里会成为非常自然的夜晚收尾，而不是额外负担。</p>
+                    <p>如果脚已经不想继续了，也完全可以在祇园吃完就回大阪，不需要为了“完成率”硬把先斗町也拿下。</p>
+                    <div class="link-row">
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pontocho+Kyoto" target="_blank" rel="noreferrer">地图</a>
+                    </div>
                   </div>
                 </article>
               </div>
@@ -1312,11 +1232,11 @@
             <div class="day-top">
               <div class="badge osaka">DAY 7<br>回东京</div>
               <div class="day-title">
-                <h3>03/31 周二｜大阪最后半天 + 伊丹飞羽田</h3>
-                <p>最后一天上午还能补一个大阪街区，但下午必须切到机场模式。今晚不是直接回国，而是先从伊丹飞羽田，在东京过一夜后第二天再接国际段。</p>
+                <h3>03/31 周二｜大阪最后半天：梅田 / 日本桥大人向逛店 + 伊丹飞羽田</h3>
+                <p>最后半天不再做普通补景，而是把公开合法的大人向逛店放在最顺手的位置：想效率最高就留梅田，想更有逛头就去日本桥，但无论哪条都必须在傍晚前切机场模式。</p>
               </div>
               <div class="day-meta">
-                <span class="chip osaka">天神桥筋 / 黑门市场 / 梅田三选一</span>
+                <span class="chip osaka">梅田第一大楼 / 日本桥</span>
                 <span class="chip warn">可能阵雨</span>
                 <span class="chip risk">晚上飞羽田后仍要过夜</span>
               </div>
@@ -1325,10 +1245,11 @@
               <div class="slots">
                 <section class="slot">
                   <strong>上午</strong>
-                  <small>最后补景：天神桥筋商店街 / 黑门市场 / 梅田</small>
+                  <small>09:30 后可出门 | 梅田高效版或日本桥更好玩版</small>
                   <ul>
-                    <li>如果你想要更生活化，就去天神桥筋商店街；想更游客感一点，就去黑门市场；只想效率最高，就留在梅田。</li>
-                    <li>今天不建议再开一个远郊支线，因为晚上还有飞羽田这件事。</li>
+                    <li>如果你想最省脑，就留在梅田 / 大阪站前第一大楼一带。那边的大人向店铺离大阪站和机场模式都近，买完就能顺着进下午的交通节奏。</li>
+                    <li>如果你更想看选择更全、也更有日本味的一面，就去难波 / 日本桥。那边公开合法的大人向卖场更集中，也更像“日本城市里真的会存在这种店”的观察体验。</li>
+                    <li>今天不建议再开远郊支线，重点是顺手、好玩、并且准点离开市区。</li>
                   </ul>
                 </section>
                 <section class="slot">
@@ -1336,7 +1257,7 @@
                   <small>建议 16:30-17:00 离开市区 | 梅田 / 难波去 ITM 约 30 分钟级别</small>
                   <ul>
                     <li>伊丹去大阪站或难波的机场巴士都大约 30 分钟级别，但官方也写了道路可能延误，所以今天不要卡极限。</li>
-                    <li>今天不是国际离境，但也不要卡极限。宁愿早一点到伊丹，也不要把最后半天做成冲刺赛。</li>
+                    <li>今天可以买东西，但不要买到最后关头还在比较价钱。宁愿早一点到伊丹，也不要把最后半天做成冲刺赛。</li>
                     <li>如果下雨，出发前把备用袜放在最顺手的位置。</li>
                   </ul>
                 </section>
@@ -1351,61 +1272,52 @@
               </div>
               <div class="note-row">
                 <div class="note">
-                  <strong>关键风险</strong>
-                  <p>今天真正的风险，是飞到羽田后才发现过夜和行李衔接没想清楚。这件事最好在出发前就定好。</p>
+                  <strong>怎么选</strong>
+                  <p>如果你更在意效率和机场衔接，就留梅田 / 第一大楼；如果你更在意货和日本味，就去日本桥。前者更省脑，后者更好玩，但两条都要在傍晚前收手。</p>
                 </div>
                 <div class="note">
                   <strong>执行重点</strong>
-                  <p>最后一天只补一个大阪点就够了，下午必须把脑力留给机场和东京过夜安排。真正要解决的是羽田落地后的住宿和行李，不是再多逛一个景点。</p>
+                  <p>最后一天不求景点完成率，只求顺手、好玩、准点。真正要解决的还是羽田落地后的住宿和行李，不是再多硬塞一个大阪景点。</p>
                 </div>
               </div>
               <div class="spot-grid">
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tenjinbashisuji_shopping_street_-_panoramio_%2844%29.jpg/900px-Tenjinbashisuji_shopping_street_-_panoramio_%2844%29.jpg" alt="大阪天神桥筋商店街" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">生活系商店街</span>
-                    <h4>天神桥筋商店街</h4>
-                    <p>天神桥筋商店街很适合第一次来大阪但不想只看游客热门点的人。它是很典型的长距离日本商店街，卖吃的、卖杂货的、理发店、老店和日常生活混在一起，比道顿堀更接近“本地人平常怎么在城市里穿行”。</p>
-                    <p>第一次到这里，最值得看的是大阪的生活感。你会发现它没有那么强的观光表演性，但正因为如此，很适合放在最后半天，让旅程从热闹景点回到真正的城市日常里。</p>
+                    <span class="spot-type">公开合法的大人向卖场区</span>
+                    <h4>日本桥 / 电电城</h4>
+                    <p>如果你想把“日本 18+ 卖场文化”真正看一眼，日本桥会比最后一天乱撞更顺。这里把电玩、模型、二次元和公开合法的大人向商店混在一片街区里，逛起来比较自然，也更像观察城市本身。</p>
+                    <p>它的优点是好玩、密度高、选择多；缺点就是容易越逛越久。所以它很适合“上午认真逛，下午准时抽身”的最后半天打法。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Tenjinbashisuji+Shopping+Street+Osaka" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nipponbashi+Denden+Town+Osaka" target="_blank" rel="noreferrer">电电城</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nobunaga+Shoten+Nipponbashi+Osaka" target="_blank" rel="noreferrer">日本桥店</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/KUROMON_MARKET_OSAKA_%2854676620980%29.jpg/900px-KUROMON_MARKET_OSAKA_%2854676620980%29.jpg" alt="大阪黑门市场" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">食材市场</span>
-                    <h4>黑门市场</h4>
-                    <p>黑门市场原本就是大阪的传统市场，如今游客很多，但它仍然是快速感受大阪“吃”的一面的好地方。摊位密、节奏快、海鲜和熟食集中，很适合在离开关西前做一次短而直接的食欲收尾。</p>
-                    <p>第一次来黑门，不必把它想成深度市场体验。它更适合高效吃一点、看一点、买一点，然后收手离开。放在最后一天，它的优点反而很明显：省脑、直接、有大阪味。</p>
+                    <span class="spot-type">飞羽田前最高效的版本</span>
+                    <h4>梅田 / 大阪站前第一大楼</h4>
+                    <p>如果你想把最后半天做得最省脑，梅田 / 大阪站前第一大楼会是最实用的大人向逛店位。公开合法的店铺离大阪站、北新地和西梅田都近，逛完可以直接进入去伊丹的节奏。</p>
+                    <p>它没有日本桥那种整片街区的怪趣味，但胜在效率极高。对飞东京前的半天来说，这种“玩得到，又不误机”的稳定感非常值钱。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kuromon+Market+Osaka" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Osaka+Ekimae+Building+No.1" target="_blank" rel="noreferrer">第一大楼</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nobunaga+Shoten+Osaka+Ekimae+Building+No.1" target="_blank" rel="noreferrer">信长书店</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Osaka_Station_City2.JPG/900px-Osaka_Station_City2.JPG" alt="大阪梅田站城" loading="lazy">
-                  </div>
                   <div class="spot-copy">
-                    <span class="spot-type">大阪北区交通核</span>
-                    <h4>梅田</h4>
-                    <p>梅田是大阪北区的超级交通和商业中心，站体、商场、地下街和高楼几乎连成一大片。它不一定是最有风情的地方，但对第一次来的人非常实用，尤其适合下雨、买伴手礼或在离机场前维持高效率。</p>
-                    <p>第一次到梅田，很容易被复杂站体搞晕，所以你也可以把这里当成“现代大阪”的样本。它和京都、奈良、有马完全不同，能让这趟旅程最后收在一幅更现代的关西城市图景上。</p>
+                    <span class="spot-type">南区卖场更密的一支</span>
+                    <h4>难波店 / 南海难波周边</h4>
+                    <p>如果你觉得日本桥还不够，或者更想走一个“买东西更直接”的版本，难波站周边也很适合最后半天。信长书店难波店离御堂筋线和南海难波都近，动线很直，买完也好收队。</p>
+                    <p>它比日本桥更像“明确去一家店”，比梅田又更有南区的街头感。所以如果你想在最后半天拿一个更直给的大人向体验，这一支也很好用。</p>
                     <div class="link-row">
-                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Osaka+Umeda+Station" target="_blank" rel="noreferrer">地图</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Namba+Station+Osaka" target="_blank" rel="noreferrer">难波站</a>
+                      <a class="pill-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nobunaga+Shoten+Namba+Osaka" target="_blank" rel="noreferrer">难波店</a>
                     </div>
                   </div>
                 </article>
                 <article class="spot-card">
-                  <div class="spot-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Itami_Airport_terminal.jpg/900px-Itami_Airport_terminal.jpg" alt="大阪伊丹机场航站楼" loading="lazy">
-                  </div>
                   <div class="spot-copy">
                     <span class="spot-type">国内线衔接段</span>
                     <h4>伊丹机场 / 羽田过夜</h4>
